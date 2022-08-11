@@ -180,6 +180,8 @@ class MainWindow(QMainWindow):
         self.font_size_selector = QtWidgets.QSpinBox()
         self.font_size_selector.setMinimum(8)
         self.font_size_selector.setMaximum(14)
+        font_size_selector_line_edit = self.font_size_selector.lineEdit()
+        font_size_selector_line_edit.setReadOnly(True)
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.font_size_selector.setValue(settings.get_font_size())
@@ -198,6 +200,8 @@ class MainWindow(QMainWindow):
         self.target_retention_rate_selector = QtWidgets.QSpinBox()
         self.target_retention_rate_selector.setMinimum(50)
         self.target_retention_rate_selector.setMaximum(99)
+        target_retention_rate_selector_line_edit = self.target_retention_rate_selector.lineEdit()
+        target_retention_rate_selector_line_edit.setReadOnly(True)
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.target_retention_rate_selector.setValue(settings.get_target_retention_rate())
