@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt
 import os
 import urllib.request
 import sys
@@ -473,6 +474,8 @@ class MainWindow(QMainWindow):
             self.search_card_num_label = QtWidgets.QLabel()
             self.search_card_num_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
+            self.search_card_num_label.setAlignment(Qt.AlignCenter)
+            self.search_card_num_label.setMinimumWidth(100)
             self.search_lower_frame_grid_layout.addWidget(self.search_card_num_label, 0, 4, 1, 1)
 
             self.search_next_btn = QtWidgets.QPushButton()
