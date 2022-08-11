@@ -731,7 +731,9 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addItem(add_cards_lower_spacer, 1, 0, 1, 1)
 
     def add_card_btn_clicked(self):
-        if not cards.add_card(self.add_cards_deck_selector.currentText(), self.add_cards_qst_text.toPlainText(), self.add_cards_ans_text.toPlainText()):
+        qst = self.add_cards_qst_text.toPlainText().strip()
+        ans = self.add_cards_ans_text.toPlainText().strip()
+        if not cards.add_card(self.add_cards_deck_selector.currentText(), qst, ans):
             duplicate_qst_msg = QMessageBox()
             duplicate_qst_msg.setWindowTitle('Duplicate')
             duplicate_qst_msg.setText('A card with that question already exists, card not added.')
@@ -800,13 +802,16 @@ class MainWindow(QMainWindow):
             empty_deck_line_msg.setText('Please enter a deck name.')
             empty_deck_line_msg.exec_()
             return
+
         not_duplicate = decks.add_deck(deck_name)
+
         if not not_duplicate:
             duplicate_deck_msg = QMessageBox()
             duplicate_deck_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             duplicate_deck_msg.setWindowTitle('Duplicate')
             duplicate_deck_msg.setText('Deck already exists.')
             duplicate_deck_msg.exec_()
+
         self.menu_decks_btn_clicked()
 
     def del_deck_btn_clicked(self):
