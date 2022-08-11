@@ -734,9 +734,10 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addItem(add_cards_lower_spacer, 1, 0, 1, 1)
 
     def add_card_btn_clicked(self):
-        qst = self.add_cards_qst_text.toPlainText().strip()
-        ans = self.add_cards_ans_text.toPlainText().strip()
-        if not cards.add_card(self.add_cards_deck_selector.currentText(), qst, ans):
+        add_qst = self.add_cards_qst_text.toPlainText().strip()
+        add_ans = self.add_cards_ans_text.toPlainText().strip()
+
+        if not cards.add_card(self.add_cards_deck_selector.currentText(), add_qst, add_ans):
             duplicate_qst_msg = QMessageBox()
             duplicate_qst_msg.setWindowTitle('Duplicate')
             duplicate_qst_msg.setText('A card with that question already exists, card not added.')
