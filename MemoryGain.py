@@ -60,8 +60,8 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
-        self.setMinimumSize(1000, 600)
-        self.resize(1000, 600)
+        self.setMinimumSize(1100, 600)
+        self.resize(1100, 600)
 
         self.setStyleSheet('''
                             QPushButton{
@@ -625,6 +625,7 @@ class MainWindow(QMainWindow):
             self.study_completed_label = QtWidgets.QLabel()
             self.study_completed_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.study_completed_label.setText('Study completed.')
+            self.study_completed_label.setMinimumHeight(60)
             self.main_frame_grid_layout.addWidget(self.study_completed_label, 0, 0, 1, 1)
 
             completed_lower_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
