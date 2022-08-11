@@ -720,6 +720,7 @@ class MainWindow(QMainWindow):
             self.make_deck_label = QtWidgets.QLabel()
             self.make_deck_label.setText('Please make a deck to put cards into.')
             self.make_deck_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            self.make_deck_label.setMinimumHeight(60)
             self.main_frame_grid_layout.addWidget(self.make_deck_label, 0, 0, 1, 1)
 
             add_cards_lower_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
