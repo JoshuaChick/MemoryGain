@@ -497,7 +497,10 @@ class MainWindow(QMainWindow):
             query_not_found_msg.exec_()
 
     def search_save_btn_clicked(self):
-        if self.search_qst_text.toPlainText().strip() == '':
+        search_qst = self.search_qst_text.toPlainText().strip()
+        search_ans = self.search_ans_text.toPlainText().strip()
+
+        if search_qst == '':
             enter_qst_msg = QMessageBox()
             enter_qst_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             enter_qst_msg.setWindowTitle('Enter Question')
@@ -505,11 +508,11 @@ class MainWindow(QMainWindow):
             enter_qst_msg.exec_()
             return
 
-        if self.search_qst_text.toPlainText() == self.searched_cards[self.search_up_to]['Question']:
-            cards.write_card_edit_save(self.searched_cards[self.search_up_to], self.search_qst_text.toPlainText(), self.search_ans_text.toPlainText())
+        if search_qst == self.searched_cards[self.search_up_to]['Question']:
+            cards.write_card_edit_save(self.searched_cards[self.search_up_to], search_qst, search_ans)
         # Makes sure an edited question does not already exist.
         else:
-            if cards.check_qst_exists(self.search_qst_text.toPlainText()):
+            if cards.check_qst_exists(search_qst):
                 duplicate_qst_msg = QMessageBox()
                 duplicate_qst_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
                 duplicate_qst_msg.setWindowTitle('Duplicate Question')
@@ -517,12 +520,12 @@ class MainWindow(QMainWindow):
                 duplicate_qst_msg.exec_()
                 return
             else:
-                cards.write_card_edit_save(self.searched_cards[self.search_up_to], self.search_qst_text.toPlainText(), self.search_ans_text.toPlainText())
+                cards.write_card_edit_save(self.searched_cards[self.search_up_to], search_qst, search_ans)
 
-        cards.change_deck(self.searched_cards[self.search_up_to]['Deck'], self.search_deck_selector.currentText(), self.searched_cards[self.search_up_to]['Question'])
+        cards.change_deck(self.searched_cards[self.search_up_to]['Deck'], self.search_deck_selector.currentText(), search_qst)
 
-        self.searched_cards[self.search_up_to]['Question'] = self.search_qst_text.toPlainText()
-        self.searched_cards[self.search_up_to]['Answer'] = self.search_ans_text.toPlainText()
+        self.searched_cards[self.search_up_to]['Question'] = search_qst
+        self.searched_cards[self.search_up_to]['Answer'] = search_ans
         self.searched_cards[self.search_up_to]['Deck'] = self.search_deck_selector.currentText()
 
     def search_del_btn_clicked(self):
