@@ -861,8 +861,8 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
-    cards.cards_on_device()
     decks.decks_on_device()
+    cards.cards_on_device()
     stats.stats_on_device()
     settings.settings_on_device()
     backups.backups_on_device()
