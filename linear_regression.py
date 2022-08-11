@@ -1,5 +1,5 @@
 """
-Contains functions related to performing linear regression on two lists.
+Contains functions related to performing linear regression on character count (x-axis) and ease factor (y-axis).
 """
 
 import math
