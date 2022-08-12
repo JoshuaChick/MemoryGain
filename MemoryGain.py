@@ -320,11 +320,14 @@ class MainWindow(QMainWindow):
                 self.restore_backup_selector.addItem(name)
 
     def create_backup_btn_clicked(self):
+        saved_backup_name = ''
+
         while True:
             backup_name_input_dialog = QtWidgets.QInputDialog()
             backup_name_input_dialog.setInputMode(QtWidgets.QInputDialog.TextInput)
             backup_name_input_dialog.setWindowTitle('Create Backup')
             backup_name_input_dialog.setLabelText('Name of backup:')
+            backup_name_input_dialog.setTextValue(saved_backup_name)
             backup_name_input_dialog.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             ok = backup_name_input_dialog.exec_()
             backup_name = backup_name_input_dialog.textValue()
@@ -339,7 +342,15 @@ class MainWindow(QMainWindow):
                 continue
 
             if ok:
-                backups.create_back_up(backup_name)
+                not_duplicate = backups.create_back_up(backup_name)
+                if not not_duplicate:
+                    duplicate_backup = QMessageBox()
+                    duplicate_backup.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+                    duplicate_backup.setWindowTitle('Duplicate Name')
+                    duplicate_backup.setText('A backup with that name already exists, please choose another.')
+                    duplicate_backup.exec_()
+                    saved_backup_name = backup_name
+                    continue
 
             break
 
