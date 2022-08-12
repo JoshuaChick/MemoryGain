@@ -26,6 +26,18 @@ def decks_on_device():
             decks_file.write('')
 
 
+def check_deck_exists(deck):
+    """
+    Checks if a deck exists. If it does True is returned, if not, False is returned.
+    """
+    with open(f'{temp_path}\\..\\MemoryGain\\decks.txt', 'r') as decks_file:
+        deck_lines = decks_file.readlines()
+        if (deck + '\n') in deck_lines:
+            return True
+
+    return False
+
+
 def get_deck_lines():
     """
     Returns a list with all the lines in decks.txt (each line corresponds to a deck).
