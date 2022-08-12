@@ -165,6 +165,8 @@ def correct_ans(current_card):
             else:
                 if (type(stats.get_retention_1440(30)) == float) and (stats.get_retention_1440(30) >= settings.get_target_retention_rate()):
                     cards[i]['Ease'] = str(float(cards[i]['Ease']) + 0.1)
+                    if float(cards[i]['Ease']) > 5:
+                        cards[i]['Ease'] = '5.0'
                     cards[i]['Interval'] = str(int(int(cards[i]['Interval']) * float(cards[i]['Ease'])))
                     cards[i]['Due'] = str(datetime.datetime.now() + datetime.timedelta(minutes=int(cards[i]['Interval'])))
                 else:
@@ -219,6 +221,8 @@ def again_ans(current_card):
     for i in range(len(cards)):
         if cards[i]['Question'] == current_card['Question']:
             cards[i]['Ease'] = str(float(cards[i]['Ease']) - 0.3)
+            if float(cards[i]['Ease']) < 1.3:
+                cards[i]['Ease'] = '1.3'
             cards[i]['Due'] = str(datetime.datetime.now() + datetime.timedelta(minutes=3))
             cards[i]['Interval'] = '0'
 
@@ -336,7 +340,7 @@ def add_card(deck, qst, ans):
                 'Deck': deck,
                 'Question': qst,
                 'Answer': ans,
-                'Ease': '5',
+                'Ease': '5.0',
                 'Due': str(datetime.datetime.now()),
                 'Interval': '0',
                 'Phase': '1'
