@@ -1,5 +1,5 @@
 """
-This module is for managing cards. It contains functions for manipulating cards.txt.
+This module is for managing cards. It contains functions for manipulating cards.csv.
 """
 
 import tempfile
