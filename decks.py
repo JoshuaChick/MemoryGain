@@ -65,11 +65,8 @@ def add_deck(deck):
     """
     Inserts a deck into decks.txt, in alphabetical order. Return False is the deck already exists. Otherwise returns True.
     """
-    deck_text = deck.strip()
-    with open(f'{temp_path}\\..\\MemoryGain\\decks.txt', 'r') as decks_file:
-        deck_lines = decks_file.readlines()
-        if (deck_text + '\n') in deck_lines:
-            return False
+    if check_deck_exists(deck):
+        return False
 
     with open(f'{temp_path}\\..\\MemoryGain\\decks.txt', 'a') as decks_file:
         decks_file.write(deck + '\n')
