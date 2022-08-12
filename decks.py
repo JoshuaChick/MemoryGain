@@ -75,6 +75,9 @@ def add_deck(deck):
 
 
 def rename_deck(old_name, new_name):
+    """
+    Renames a deck and all cards that belong to it.
+    """
     deck_lines = get_deck_lines()
     for i in range(len(deck_lines)):
         if deck_lines[i] == old_name + '\n':
@@ -86,3 +89,4 @@ def rename_deck(old_name, new_name):
     with open(f'{temp_path}\\..\\MemoryGain\\decks.txt', 'w') as decks_file:
         decks_file.writelines(deck_lines)
 
+    cards.change_deck(old_name, new_name)

@@ -856,8 +856,10 @@ class MainWindow(QMainWindow):
 
     def rename_deck_btn_clicked(self):
         selected_deck_rename = self.rename_deck_selector.currentText().strip()
+
         if selected_deck_rename == '':
             return
+
         while True:
             deck_name_input_dialog = QtWidgets.QInputDialog()
             deck_name_input_dialog.setInputMode(QtWidgets.QInputDialog.TextInput)
@@ -877,7 +879,6 @@ class MainWindow(QMainWindow):
                 continue
 
             if ok:
-                cards.change_deck(selected_deck_rename, new_deck_name)
                 decks.rename_deck(selected_deck_rename, new_deck_name)
 
             break
