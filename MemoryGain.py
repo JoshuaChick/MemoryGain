@@ -737,6 +737,14 @@ class MainWindow(QMainWindow):
         add_qst = self.add_cards_qst_text.toPlainText().strip()
         add_ans = self.add_cards_ans_text.toPlainText().strip()
 
+        if add_qst == '':
+            enter_qst_msg = QMessageBox()
+            enter_qst_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            enter_qst_msg.setWindowTitle('Enter Question')
+            enter_qst_msg.setText('Please enter a question')
+            enter_qst_msg.exec_()
+            return
+
         if not cards.add_card(self.add_cards_deck_selector.currentText(), add_qst, add_ans):
             duplicate_qst_msg = QMessageBox()
             duplicate_qst_msg.setWindowTitle('Duplicate')
