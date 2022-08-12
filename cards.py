@@ -23,7 +23,7 @@ def cards_on_device():
     Checks if cards.csv is on device, if not it is added. decks.decks_on_device() must be called first to make
     the MemoryGain dir.
     """
-    # Due to the way cards were stored in the test version of MemoryGain it, reformats old cards to the new format.
+    # Due to the way cards were stored in the test version of MemoryGain, it reformats old cards to the new format.
     old_cards = []
 
     if os.path.exists(f'{temp_path}\\..\\MemoryGain\\cards.txt'):
