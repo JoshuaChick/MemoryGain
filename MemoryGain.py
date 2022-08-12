@@ -860,12 +860,15 @@ class MainWindow(QMainWindow):
         if selected_deck_rename == '':
             return
 
+        saved_deck_name = ''
+
         while True:
             deck_name_input_dialog = QtWidgets.QInputDialog()
             deck_name_input_dialog.setInputMode(QtWidgets.QInputDialog.TextInput)
             deck_name_input_dialog.setWindowTitle('Rename Deck')
             deck_name_input_dialog.setLabelText('Enter the new name for deck:')
             deck_name_input_dialog.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            deck_name_input_dialog.setTextValue(saved_deck_name)
             ok = deck_name_input_dialog.exec_()
             new_deck_name = deck_name_input_dialog.textValue()
             new_deck_name = new_deck_name.strip()
@@ -879,7 +882,15 @@ class MainWindow(QMainWindow):
                 continue
 
             if ok:
-                decks.rename_deck(selected_deck_rename, new_deck_name)
+                not_duplicate = decks.rename_deck(selected_deck_rename, new_deck_name)
+                if not not_duplicate:
+                    duplicate_deck_msg = QMessageBox()
+                    duplicate_deck_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+                    duplicate_deck_msg.setWindowTitle('Duplicate')
+                    duplicate_deck_msg.setText('Deck already exists.')
+                    duplicate_deck_msg.exec_()
+                    saved_deck_name = new_deck_name
+                    continue
 
             break
 
