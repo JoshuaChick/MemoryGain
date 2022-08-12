@@ -85,8 +85,11 @@ def add_deck(deck):
 
 def rename_deck(old_name, new_name):
     """
-    Renames a deck and all cards that belong to it.
+    Renames a deck and all cards that belong to it. Returns True if successful. Returns False is name already exists.
     """
+    if check_deck_exists(new_name):
+        return False
+
     deck_lines = get_deck_lines()
     for i in range(len(deck_lines)):
         if deck_lines[i] == old_name + '\n':
@@ -99,3 +102,5 @@ def rename_deck(old_name, new_name):
         decks_file.writelines(deck_lines)
 
     cards.change_deck(old_name, new_name)
+
+    return True
