@@ -220,9 +220,11 @@ def again_ans(current_card):
 
     for i in range(len(cards)):
         if cards[i]['Question'] == current_card['Question']:
-            cards[i]['Ease'] = str(float(cards[i]['Ease']) - 0.3)
-            if float(cards[i]['Ease']) < 1.3:
-                cards[i]['Ease'] = '1.3'
+            if (not cards[i]['Interval'] == '0') and (not cards[i]['Interval'] == '10'):
+                cards[i]['Ease'] = str(float(cards[i]['Ease']) - 0.3)
+                if float(cards[i]['Ease']) < 1.3:
+                    cards[i]['Ease'] = '1.3'
+
             cards[i]['Due'] = str(datetime.datetime.now() + datetime.timedelta(minutes=3))
             cards[i]['Interval'] = '0'
 
