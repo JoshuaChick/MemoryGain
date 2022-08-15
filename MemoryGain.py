@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
             # Update checker.
             try:
                 html = urllib.request.urlopen("https://memorygain.app")
-                if "Version 1.0.4" not in str(html.read()):
+                if "Version 1.0.5" not in str(html.read()):
                     update_msg = QMessageBox()
                     update_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
                     update_msg.setWindowTitle("Update")
