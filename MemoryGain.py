@@ -330,6 +330,21 @@ class MainWindow(QMainWindow):
                 no_name_msg.exec_()
                 continue
 
+            # Checks for invalid character.
+            invalid_char = False
+            for char in ['\\', '/', ':', '*', '?', '"', '<', '>', '|']:
+                if char in backup_name and ok:
+                    no_name_msg = QMessageBox()
+                    no_name_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+                    no_name_msg.setWindowTitle('Invalid Character')
+                    no_name_msg.setText('Due to the way Windows stores folders your backup name cannot contain: \ / : * ? " < > |')
+                    no_name_msg.exec_()
+                    invalid_char = True
+                    break
+
+            if invalid_char:
+                continue
+
             if ok:
                 not_duplicate = backups.create_back_up(backup_name)
                 if not not_duplicate:
