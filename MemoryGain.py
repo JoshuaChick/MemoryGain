@@ -441,15 +441,13 @@ class MainWindow(QMainWindow):
 
             self.search_qst_text = QtWidgets.QTextEdit()
             self.search_qst_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-            self.search_qst_text.setText(self.searched_cards[self.search_up_to]['Question'])
-            # self.search_qst_text.setText(self.search_qst_text.toPlainText())
+            self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_qst_text.setTabChangesFocus(True)
             self.main_frame_grid_layout.addWidget(self.search_qst_text, 2, 0, 1, 2)
 
             self.search_ans_text = QtWidgets.QTextEdit()
             self.search_ans_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-            self.search_ans_text.setText(self.searched_cards[self.search_up_to]['Answer'])
-            # self.search_ans_text.setText(self.search_ans_text.toPlainText())
+            self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
             self.search_ans_text.setTabChangesFocus(True)
             self.main_frame_grid_layout.addWidget(self.search_ans_text, 3, 0, 1, 2)
 
@@ -540,14 +538,14 @@ class MainWindow(QMainWindow):
             self.search_up_to = self.search_up_to - 1
 
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
-            self.search_qst_text.setText(self.searched_cards[self.search_up_to]['Question'])
-            self.search_ans_text.setText(self.searched_cards[self.search_up_to]['Answer'])
+            self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
+            self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
             self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
         else:
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
-            self.search_qst_text.setText(self.searched_cards[self.search_up_to]['Question'])
-            self.search_ans_text.setText(self.searched_cards[self.search_up_to]['Answer'])
+            self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
+            self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
             self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
 
@@ -558,8 +556,8 @@ class MainWindow(QMainWindow):
             self.search_up_to = self.search_up_to - 1
 
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
-            self.search_qst_text.setText(self.searched_cards[self.search_up_to]['Question'])
-            self.search_ans_text.setText(self.searched_cards[self.search_up_to]['Answer'])
+            self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
+            self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
             self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
 
@@ -568,8 +566,8 @@ class MainWindow(QMainWindow):
             self.search_up_to = self.search_up_to + 1
 
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
-            self.search_qst_text.setText(self.searched_cards[self.search_up_to]['Question'])
-            self.search_ans_text.setText(self.searched_cards[self.search_up_to]['Answer'])
+            self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
+            self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
             self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
 
