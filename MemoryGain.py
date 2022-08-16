@@ -20,8 +20,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
-import os
-import urllib.request
 import sys
 import cards
 import decks
