@@ -442,12 +442,14 @@ class MainWindow(QMainWindow):
             self.search_qst_text = QtWidgets.QTextEdit()
             self.search_qst_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_qst_text.setText(self.searched_cards[self.search_up_to]['Question'])
+            # self.search_qst_text.setText(self.search_qst_text.toPlainText())
             self.search_qst_text.setTabChangesFocus(True)
             self.main_frame_grid_layout.addWidget(self.search_qst_text, 2, 0, 1, 2)
 
             self.search_ans_text = QtWidgets.QTextEdit()
             self.search_ans_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_ans_text.setText(self.searched_cards[self.search_up_to]['Answer'])
+            # self.search_ans_text.setText(self.search_ans_text.toPlainText())
             self.search_ans_text.setTabChangesFocus(True)
             self.main_frame_grid_layout.addWidget(self.search_ans_text, 3, 0, 1, 2)
 
@@ -581,7 +583,7 @@ class MainWindow(QMainWindow):
             self.study_qst_text.setTabChangesFocus(True)
             self.study_qst_text.setObjectName("study_qst_text")
             self.study_qst_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-            self.study_qst_text.setText(self.current_card['Question'])
+            self.study_qst_text.setPlainText(self.current_card['Question'])
             self.study_qst_text.setReadOnly(True)
             self.study_qst_text.setStyleSheet('''
                                             #study_qst_text{
@@ -639,7 +641,7 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addItem(completed_lower_spacer, 1, 0, 1, 1)
 
     def study_ans_btn_clicked(self):
-        self.study_ans_text.setText(self.current_card["Answer"])
+        self.study_ans_text.setPlainText(self.current_card["Answer"])
 
         # Done to change focus off of self.study_ans_btn before it is cleared.
         self.menu_study_btn.setFocus()
@@ -690,7 +692,6 @@ class MainWindow(QMainWindow):
             self.add_cards_deck_selector = QtWidgets.QComboBox()
             # The drop down list on ComboBoxes is unusually small so 4 point is added.
             self.add_cards_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
-            # UP TO HERE, trying to get combobox text to not be cut.
             self.add_cards_deck_selector.setMinimumHeight(60)
             deck_lines = decks.get_deck_lines()
             for deck in deck_lines:
