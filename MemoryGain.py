@@ -827,13 +827,14 @@ class MainWindow(QMainWindow):
 
     def del_deck_btn_clicked(self):
         selected_deck_del = self.del_deck_selector.currentText().strip()
+
         if selected_deck_del == '':
             return
 
         confirm_del_deck_msg = QMessageBox()
         confirm_del_deck_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         confirm_del_deck_msg.setWindowTitle('Confirm')
-        confirm_del_deck_msg.setText(f'Are you sure you want to delete the \'{selected_deck_del}\' deck and all cards in this deck?')
+        confirm_del_deck_msg.setText(f'Are you sure you want to delete the selected deck and all cards in the deck?')
         confirm_del_deck_msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         confirm_del_deck_msg.setDefaultButton(QMessageBox.Cancel)
         confirm_del_deck_msg.exec_()
