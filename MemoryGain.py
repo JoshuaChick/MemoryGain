@@ -28,6 +28,7 @@ import decks
 import stats
 import settings
 import backups
+import update
 
 
 class MainWindow(QMainWindow):
@@ -37,26 +38,16 @@ class MainWindow(QMainWindow):
 
     def setup_ui(self, check_for_update=True):
         if check_for_update:
-            # Update checker.
-            try:
-                html = urllib.request.urlopen("https://memorygain.app")
-                if "Version 1.0.5" not in str(html.read()):
-                    update_msg = QMessageBox()
-                    update_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-                    update_msg.setWindowTitle("Update")
-                    update_msg.setText("There is an updated version available at https://memorygain.app. Would you like to download the updated version?")
-                    update_msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-                    update_msg.setIcon(QMessageBox.Information)
-                    update_msg.exec_()
-                    if update_msg.clickedButton().text() == "&Yes":
-                        os.system("START https://memorygain.app")
-                        sys.exit()
-
-            except urllib.error.URLError as e:
-                print(e)
-
-            except urllib.error.HTTPError as e:
-                print(e)
+            if update.update_available():
+                update_msg = QMessageBox()
+                update_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+                update_msg.setWindowTitle("Update")
+                update_msg.setText("There is an updated version available at https://memorygain.app. Would you like to download the updated version?")
+                update_msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+                update_msg.setIcon(QMessageBox.Information)
+                update_msg.exec_()
+                if update_msg.clickedButton().text() == "&Yes":
+                    update.go_to_memorygain_site()
 
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
