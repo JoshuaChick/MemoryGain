@@ -66,6 +66,7 @@ class MainWindow(QMainWindow):
                                 height: 60px;
                             }
                             ''')
+        QtWidgets.QToolTip.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
 
         self.central_widget = QtWidgets.QWidget(self)
         self.central_widget.setObjectName("central_widget")
@@ -429,6 +430,7 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addItem(search_lower_right_spacer, 1, 1, 1, 1)
 
     def search_btn_clicked(self, query):
+        self.search_up_to = 0
         self.searched_cards = cards.search_for_cards(query)
 
         if len(self.searched_cards) != 0:
@@ -488,12 +490,14 @@ class MainWindow(QMainWindow):
             self.search_previous_btn = QtWidgets.QPushButton()
             self.search_previous_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_previous_btn.setText('<')
+            self.search_previous_btn.setToolTip(f'1 of {len(self.searched_cards)}')
             self.search_previous_btn.clicked.connect(lambda: self.search_previous_btn_clicked())
             self.search_lower_frame_grid_layout.addWidget(self.search_previous_btn, 0, 3, 1, 1)
 
             self.search_next_btn = QtWidgets.QPushButton()
             self.search_next_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_next_btn.setText('>')
+            self.search_next_btn.setToolTip(f'2 of {len(self.searched_cards)}')
             self.search_next_btn.clicked.connect(lambda: self.search_next_btn_clicked())
             self.search_lower_frame_grid_layout.addWidget(self.search_next_btn, 0, 4, 1, 1)
 
@@ -554,6 +558,8 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
+        self.adjust_search_index_tooltip()
+
         self.menu_study_btn.setText(f'Study {cards.get_num_to_study()}')
 
     def search_previous_btn_clicked(self):
@@ -564,6 +570,8 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
+            self.adjust_search_index_tooltip()
+
     def search_next_btn_clicked(self):
         if self.search_up_to < len(self.searched_cards) - 1:
             self.search_up_to = self.search_up_to + 1
@@ -571,6 +579,19 @@ class MainWindow(QMainWindow):
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
+
+            self.adjust_search_index_tooltip()
+
+    def adjust_search_index_tooltip(self):
+        if self.search_up_to == 0:
+            self.search_previous_btn.setToolTip(f'1 of {len(self.searched_cards)}')
+            self.search_next_btn.setToolTip(f'2 of {len(self.searched_cards)}')
+        elif (self.search_up_to + 1) == len(self.searched_cards):
+            self.search_previous_btn.setToolTip(f'{self.search_up_to} of {len(self.searched_cards)}')
+            self.search_next_btn.setToolTip(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
+        else:
+            self.search_previous_btn.setToolTip(f'{self.search_up_to} of {len(self.searched_cards)}')
+            self.search_next_btn.setToolTip(f'{self.search_up_to + 2} of {len(self.searched_cards)}')
 
     def menu_study_btn_clicked(self, deck=False):
         self.clear_layout(self.main_frame_grid_layout)
