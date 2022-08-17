@@ -9,7 +9,7 @@ def update_available():
     try:
         html = urllib.request.urlopen("https://memorygain.app")
         html = str(html.read())
-        if ("Version 1.0.6" not in html) and ("MemoryGain" in html):
+        if ("Version 1.0.7" not in html) and ("MemoryGain" in html):
             return True
 
     except urllib.error.URLError as e:
