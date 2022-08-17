@@ -49,8 +49,8 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
-        self.setMinimumSize(800, 600)
-        self.resize(800, 600)
+        self.setMinimumSize(1000, 600)
+        self.resize(1000, 600)
         self.showMaximized()
 
         self.setStyleSheet('''
@@ -389,7 +389,7 @@ class MainWindow(QMainWindow):
         self.stats_retention_label = QtWidgets.QLabel()
         self.stats_retention_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         if type(stats.get_retention_1440()) == float:
-            self.stats_retention_label.setText(f'Retention rate: {stats.get_retention_1440()}%')
+            self.stats_retention_label.setText(f'Retention rate: {round(stats.get_retention_1440())}%')
         else:
             self.stats_retention_label.setText(f'Retention rate: N/A')
         self.stats_retention_label.setMinimumHeight(60)
@@ -398,7 +398,7 @@ class MainWindow(QMainWindow):
         self.stats_retention_30_label = QtWidgets.QLabel()
         self.stats_retention_30_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         if type(stats.get_retention_1440()) == float:
-            self.stats_retention_30_label.setText(f'Retention rate (previous 30 days): {stats.get_retention_1440(30)}%')
+            self.stats_retention_30_label.setText(f'Retention rate (previous 30 days): {round(stats.get_retention_1440(30))}%')
         else:
             self.stats_retention_30_label.setText(f'Retention rate (previous 30 days): N/A')
         self.stats_retention_30_label.setMinimumHeight(60)
