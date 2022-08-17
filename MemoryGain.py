@@ -49,8 +49,9 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
-        self.setMinimumSize(1100, 600)
-        self.resize(1100, 600)
+        self.setMinimumSize(1200, 600)
+        self.resize(1200, 600)
+        self.showMaximized()
 
         self.setStyleSheet('''
                             QPushButton{
