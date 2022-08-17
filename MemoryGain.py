@@ -491,18 +491,11 @@ class MainWindow(QMainWindow):
             self.search_previous_btn.clicked.connect(lambda: self.search_previous_btn_clicked())
             self.search_lower_frame_grid_layout.addWidget(self.search_previous_btn, 0, 3, 1, 1)
 
-            self.search_card_num_label = QtWidgets.QLabel()
-            self.search_card_num_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-            self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
-            self.search_card_num_label.setAlignment(Qt.AlignCenter)
-            self.search_card_num_label.setMinimumWidth(200)
-            self.search_lower_frame_grid_layout.addWidget(self.search_card_num_label, 0, 4, 1, 1)
-
             self.search_next_btn = QtWidgets.QPushButton()
             self.search_next_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_next_btn.setText('>')
             self.search_next_btn.clicked.connect(lambda: self.search_next_btn_clicked())
-            self.search_lower_frame_grid_layout.addWidget(self.search_next_btn, 0, 5, 1, 1)
+            self.search_lower_frame_grid_layout.addWidget(self.search_next_btn, 0, 4, 1, 1)
 
             self.main_frame_grid_layout.addWidget(self.search_lower_frame, 4, 0, 1, 2)
         else:
@@ -556,14 +549,10 @@ class MainWindow(QMainWindow):
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
-
-            self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
         else:
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
-
-            self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
 
         self.menu_study_btn.setText(f'Study {cards.get_num_to_study()}')
 
@@ -575,8 +564,6 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
-            self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
-
     def search_next_btn_clicked(self):
         if self.search_up_to < len(self.searched_cards) - 1:
             self.search_up_to = self.search_up_to + 1
@@ -584,8 +571,6 @@ class MainWindow(QMainWindow):
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
-
-            self.search_card_num_label.setText(f'{self.search_up_to + 1} of {len(self.searched_cards)}')
 
     def menu_study_btn_clicked(self, deck=False):
         self.clear_layout(self.main_frame_grid_layout)
