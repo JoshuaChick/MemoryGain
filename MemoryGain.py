@@ -649,6 +649,8 @@ class MainWindow(QMainWindow):
             self.study_lower_btns_frame_grid_layout.addItem(study_lower_btns_frame_left_spacer, 0, 0, 1, 1)
 
             self.main_frame_grid_layout.addWidget(self.study_lower_btns_frame, 2, 0, 1, 1)
+
+            self.study_ans_btn.setFocus()
         else:
             self.study_completed_label = QtWidgets.QLabel()
             self.study_completed_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
