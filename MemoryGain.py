@@ -591,6 +591,7 @@ class MainWindow(QMainWindow):
 
         if (self.search_up_to + 1) == len(self.searched_cards):
             self.search_next_btn.setEnabled(False)
+            self.setFocus()
         else:
             self.search_next_btn.setEnabled(True)
 
