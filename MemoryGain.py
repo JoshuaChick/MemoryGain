@@ -501,6 +501,8 @@ class MainWindow(QMainWindow):
             self.adjust_search_nav_btns()
 
             self.main_frame_grid_layout.addWidget(self.search_lower_frame, 4, 0, 1, 2)
+
+            self.search_next_btn.setFocus()
         else:
             query_not_found_msg = QMessageBox()
             query_not_found_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
