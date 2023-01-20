@@ -721,6 +721,7 @@ class MainWindow(QMainWindow):
             for deck in deck_lines:
                 deck = deck.replace('\n', '')
                 self.add_cards_deck_selector.addItem(deck)
+            self.add_cards_deck_selector.setCurrentIndex(-1)
             self.add_cards_upper_frame_grid_layout.addWidget(self.add_cards_deck_selector, 0, 0, 1, 1)
 
             self.add_cards_qst_text = QtWidgets.QTextEdit()
@@ -761,6 +762,15 @@ class MainWindow(QMainWindow):
     def add_card_btn_clicked(self):
         add_qst = self.add_cards_qst_text.toPlainText().strip()
         add_ans = self.add_cards_ans_text.toPlainText().strip()
+
+        if self.add_cards_deck_selector.currentIndex() == -1:
+            select_deck_msg = QMessageBox()
+            select_deck_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            select_deck_msg.setWindowTitle('Select Deck')
+            select_deck_msg.setText('Please select a deck')
+            select_deck_msg.exec_()
+            self.add_cards_deck_selector.setFocus()
+            return
 
         if add_qst == '':
             enter_qst_msg = QMessageBox()
