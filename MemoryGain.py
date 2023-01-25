@@ -21,6 +21,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 import sys
+from subprocess import PIPE, Popen
 import cards
 import decks
 import stats
@@ -934,7 +935,24 @@ class MainWindow(QMainWindow):
                     self.clear_layout(item.layout())
 
 
+# If MemoryGain.exe running True, else False.
+def app_already_running():
+    command_output = ''
+    pipe = Popen('powershell -c "get-process | select-object path"', stdout=PIPE, stderr=PIPE)
+    for line in pipe.stdout.readlines():
+        command_output += line.decode()
+
+    if 'C:\\Program Files\\MemoryGain\\MemoryGain.exe' in command_output:
+        return True
+
+    return False
+
+
 if __name__ == "__main__":
+    # Does not allow multiple instances.
+    if app_already_running():
+        sys.exit()
+
     decks.decks_on_device()
     cards.cards_on_device()
     stats.stats_on_device()
