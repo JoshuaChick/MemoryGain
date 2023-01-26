@@ -600,6 +600,8 @@ class MainWindow(QMainWindow):
     def menu_study_btn_clicked(self, deck=False):
         self.clear_layout(self.main_frame_grid_layout)
 
+        self.menu_study_btn.setText(f"Study {cards.get_num_to_study()}")
+
         self.current_card = cards.get_card(deck)
 
         if self.current_card:
