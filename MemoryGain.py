@@ -959,6 +959,7 @@ if __name__ == "__main__":
     settings.settings_on_device()
     backups.backups_on_device()
     backups.create_back_up()
+    backups.delete_old_backups()
 
     app = QApplication(sys.argv)
     main_window = MainWindow()
