@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setup_ui()
 
-    def setup_ui(self, check_for_update=True):
+    def setup_ui(self, check_for_update=True, maximize=True):
         if check_for_update:
             if update.update_available():
                 update_msg = QMessageBox()
@@ -51,7 +51,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
         self.setMinimumSize(1000, 600)
-        self.showMaximized()
+        if maximize:
+            self.showMaximized()
 
         self.setStyleSheet('''
                             QPushButton{
@@ -372,7 +373,7 @@ class MainWindow(QMainWindow):
         settings.set_target_retention_rate(self.target_retention_rate_selector.value())
 
         self.clear_layout(self.root_grid_layout)
-        self.setup_ui(False)
+        self.setup_ui(check_for_update=False, maximize=False)
         self.menu_settings_btn_clicked()
 
     def settings_cancel_btn_clicked(self):
