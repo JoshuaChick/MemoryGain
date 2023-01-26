@@ -793,6 +793,7 @@ class MainWindow(QMainWindow):
             self.menu_study_btn.setText(f"Study {cards.get_num_to_study()}")
             self.add_cards_qst_text.clear()
             self.add_cards_ans_text.clear()
+            self.add_cards_qst_text.setFocus()
 
     def menu_decks_btn_clicked(self):
         self.clear_layout(self.main_frame_grid_layout)
