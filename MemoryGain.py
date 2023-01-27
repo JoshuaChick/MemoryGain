@@ -562,6 +562,7 @@ class MainWindow(QMainWindow):
     def adjust_search_nav_btns(self):
         if self.search_up_to == 0:
             self.search_previous_btn.setEnabled(False)
+            self.setFocus()
         else:
             self.search_previous_btn.setEnabled(True)
 
