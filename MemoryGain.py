@@ -28,6 +28,7 @@ import stats
 import settings
 import backups
 import update
+from time import sleep
 
 
 class MainWindow(QMainWindow):
@@ -217,39 +218,18 @@ class MainWindow(QMainWindow):
         self.create_backup_btn.clicked.connect(lambda: self.create_backup_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.create_backup_btn, 4, 2, 1, 1)
 
-        self.del_backup_label = QtWidgets.QLabel()
-        self.del_backup_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-        self.del_backup_label.setText('Delete backup:')
-        self.main_frame_grid_layout.addWidget(self.del_backup_label, 5, 0, 1, 1)
-
-        self.del_backup_selector = QtWidgets.QComboBox()
-        # The drop down list on ComboBoxes is unusually small so 4 point is added.
-        self.del_backup_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
-        self.del_backup_selector.setMinimumHeight(60)
+        self.backup_list_widget = QtWidgets.QListWidget()
+        self.backup_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         backup_names = backups.get_backup_names()
         for name in backup_names:
-            self.del_backup_selector.addItem(name)
-        self.main_frame_grid_layout.addWidget(self.del_backup_selector, 5, 1, 1, 1)
+            self.backup_list_widget.addItem(name)
+        self.main_frame_grid_layout.addWidget(self.backup_list_widget, 5, 0, 2, 2)
 
         self.del_backup_btn = QtWidgets.QPushButton()
         self.del_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.del_backup_btn.setText('Delete')
         self.del_backup_btn.clicked.connect(lambda: self.del_backup_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.del_backup_btn, 5, 2, 1, 1)
-
-        self.restore_backup_label = QtWidgets.QLabel()
-        self.restore_backup_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-        self.restore_backup_label.setText('Restore backup:')
-        self.main_frame_grid_layout.addWidget(self.restore_backup_label, 6, 0, 1, 1)
-
-        self.restore_backup_selector = QtWidgets.QComboBox()
-        # The drop down list on ComboBoxes is unusually small so 4 point is added.
-        self.restore_backup_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
-        self.restore_backup_selector.setMinimumHeight(60)
-        backup_names = backups.get_backup_names()
-        for name in backup_names:
-            self.restore_backup_selector.addItem(name)
-        self.main_frame_grid_layout.addWidget(self.restore_backup_selector, 6, 1, 1, 1)
 
         self.restore_backup_btn = QtWidgets.QPushButton()
         self.restore_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
@@ -264,34 +244,29 @@ class MainWindow(QMainWindow):
         confirm_restore_backup_msg = QMessageBox()
         confirm_restore_backup_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         confirm_restore_backup_msg.setWindowTitle('Confirm Deletion')
-        confirm_restore_backup_msg.setText(f'Are you sure you want to restore the app to the state when \'{self.restore_backup_selector.currentText()}\' was created?')
+        confirm_restore_backup_msg.setText(f'Are you sure you want to restore the app to the state when \'{self.backup_list_widget.currentItem().text()}\' was created?')
         confirm_restore_backup_msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         confirm_restore_backup_msg.setDefaultButton(QMessageBox.Cancel)
         confirm_restore_backup_msg.exec_()
         if confirm_restore_backup_msg.clickedButton().text() == 'OK':
-            backups.restore_backup(self.restore_backup_selector.currentText())
+            backups.restore_backup(self.backup_list_widget.currentItem().text())
 
             self.clear_layout(self.root_grid_layout)
-            self.setup_ui(False)
+            self.setup_ui(check_for_update=False, maximize=False)
             self.menu_settings_btn_clicked()
 
     def del_backup_btn_clicked(self):
         confirm_del_backup_msg = QMessageBox()
         confirm_del_backup_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         confirm_del_backup_msg.setWindowTitle('Confirm Deletion')
-        confirm_del_backup_msg.setText(f'Are you sure you want to delete \'{self.del_backup_selector.currentText()}\'?')
+        confirm_del_backup_msg.setText(f'Are you sure you want to delete \'{self.backup_list_widget.currentItem().text()}\'?')
         confirm_del_backup_msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         confirm_del_backup_msg.setDefaultButton(QMessageBox.Cancel)
         confirm_del_backup_msg.exec_()
         if confirm_del_backup_msg.clickedButton().text() == 'OK':
-            backups.del_backup(self.del_backup_selector.currentText())
+            backups.del_backup(self.backup_list_widget.currentItem().text())
 
-            backup_names = backups.get_backup_names()
-            self.del_backup_selector.clear()
-            self.restore_backup_selector.clear()
-            for name in backup_names:
-                self.del_backup_selector.addItem(name)
-                self.restore_backup_selector.addItem(name)
+            self.menu_settings_btn_clicked()
 
     def create_backup_btn_clicked(self):
         saved_backup_name = ''
@@ -343,12 +318,7 @@ class MainWindow(QMainWindow):
 
             break
 
-        backup_names = backups.get_backup_names()
-        self.del_backup_selector.clear()
-        self.restore_backup_selector.clear()
-        for name in backup_names:
-            self.del_backup_selector.addItem(name)
-            self.restore_backup_selector.addItem(name)
+        self.menu_settings_btn_clicked()
 
     def settings_save(self):
         settings.set_font_size(self.font_size_selector.value())
@@ -813,14 +783,12 @@ class MainWindow(QMainWindow):
         self.add_deck_btn.clicked.connect(lambda: self.add_deck_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.add_deck_btn, 0, 1, 1, 1)
 
-        self.del_deck_selector = QtWidgets.QComboBox()
-        # The drop down list on ComboBoxes is unusually small so 4 point is added.
-        self.del_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
-        self.del_deck_selector.setMinimumHeight(60)
+        self.deck_list_widget = QtWidgets.QListWidget()
         deck_lines = decks.get_deck_lines()
         for deck in deck_lines:
-            self.del_deck_selector.addItem(deck.replace('\n', ''))
-        self.main_frame_grid_layout.addWidget(self.del_deck_selector, 1, 0, 1, 1)
+            self.deck_list_widget.addItem(deck.replace('\n', ''))
+        self.deck_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
+        self.main_frame_grid_layout.addWidget(self.deck_list_widget, 1, 0, 3, 1)
 
         self.del_deck_btn = QtWidgets.QPushButton()
         self.del_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
@@ -828,23 +796,14 @@ class MainWindow(QMainWindow):
         self.del_deck_btn.clicked.connect(lambda: self.del_deck_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.del_deck_btn, 1, 1, 1, 1)
 
-        self.rename_deck_selector = QtWidgets.QComboBox()
-        # The drop down list on ComboBoxes is unusually small so 4 point is added.
-        self.rename_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
-        self.rename_deck_selector.setMinimumHeight(60)
-        deck_lines = decks.get_deck_lines()
-        for deck in deck_lines:
-            self.rename_deck_selector.addItem(deck.replace('\n', ''))
-        self.main_frame_grid_layout.addWidget(self.rename_deck_selector, 2, 0, 1, 1)
-
         self.rename_deck_btn = QtWidgets.QPushButton()
         self.rename_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.rename_deck_btn.setText('Rename')
         self.rename_deck_btn.clicked.connect(lambda: self.rename_deck_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.rename_deck_btn, 2, 1, 1, 1)
 
-        deck_lower_left_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.main_frame_grid_layout.addItem(deck_lower_left_spacer, 3, 0, 1, 1)
+        # deck_lower_left_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        # self.main_frame_grid_layout.addItem(deck_lower_left_spacer, 3, 0, 1, 1)
 
         deck_lower_right_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.main_frame_grid_layout.addItem(deck_lower_right_spacer, 3, 1, 1, 1)
@@ -870,8 +829,12 @@ class MainWindow(QMainWindow):
 
         self.menu_decks_btn_clicked()
 
+        # Will only work if focus set to self before line edit.
+        self.setFocus()
+        self.add_deck_line_edit.setFocus()
+
     def del_deck_btn_clicked(self):
-        selected_deck_del = self.del_deck_selector.currentText().strip()
+        selected_deck_del = self.deck_list_widget.currentItem().text().strip()
 
         if selected_deck_del == '':
             return
@@ -889,7 +852,7 @@ class MainWindow(QMainWindow):
             self.menu_decks_btn_clicked()
 
     def rename_deck_btn_clicked(self):
-        selected_deck_rename = self.rename_deck_selector.currentText().strip()
+        selected_deck_rename = self.deck_list_widget.currentItem().text().strip()
 
         if selected_deck_rename == '':
             return
