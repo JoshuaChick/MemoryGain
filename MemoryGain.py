@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.font_size_selector.setValue(settings.get_font_size())
-        self.font_size_selector.textChanged.connect(lambda: self.settings_save_btn_clicked())
+        self.font_size_selector.textChanged.connect(lambda: self.settings_save())
         self.main_frame_grid_layout.addWidget(self.font_size_selector, 0, 2, 1, 1)
 
         horizontal_line_1 = QtWidgets.QFrame(self.central_widget)
@@ -198,7 +198,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.target_retention_rate_selector.setValue(settings.get_target_retention_rate())
-        self.target_retention_rate_selector.textChanged.connect(lambda: self.settings_save_btn_clicked())
+        self.target_retention_rate_selector.textChanged.connect(lambda: self.settings_save())
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_selector, 2, 2, 1, 1)
 
         horizontal_line_2 = QtWidgets.QFrame(self.central_widget)
@@ -257,28 +257,8 @@ class MainWindow(QMainWindow):
         self.restore_backup_btn.clicked.connect(lambda: self.restore_backup_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.restore_backup_btn, 6, 2, 1, 1)
 
-        settings_spacer_above_lower_frame = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.main_frame_grid_layout.addItem(settings_spacer_above_lower_frame, 7, 0, 1, 3)
-
-        self.settings_lower_frame = QtWidgets.QFrame()
-        self.settings_lower_frame_grid_layout = QtWidgets.QGridLayout(self.settings_lower_frame)
-
-        self.settings_save_btn = QtWidgets.QPushButton()
-        self.settings_save_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-        self.settings_save_btn.setText('Save')
-        self.settings_save_btn.clicked.connect(lambda: self.settings_save_btn_clicked())
-        self.settings_lower_frame_grid_layout.addWidget(self.settings_save_btn, 0, 0, 1, 1)
-
-        self.settings_cancel_btn = QtWidgets.QPushButton()
-        self.settings_cancel_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-        self.settings_cancel_btn.setText('Cancel')
-        self.settings_cancel_btn.clicked.connect(lambda: self.settings_cancel_btn_clicked())
-        self.settings_lower_frame_grid_layout.addWidget(self.settings_cancel_btn, 0, 1, 1, 1)
-
-        settings_lower_frame_right_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.settings_lower_frame_grid_layout.addItem(settings_lower_frame_right_spacer, 0, 2, 1, 1)
-
-        self.main_frame_grid_layout.addWidget(self.settings_lower_frame, 8, 0, 1, 3)
+        settings_lower_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.main_frame_grid_layout.addItem(settings_lower_spacer, 7, 0, 1, 3)
 
     def restore_backup_btn_clicked(self):
         confirm_restore_backup_msg = QMessageBox()
@@ -370,15 +350,12 @@ class MainWindow(QMainWindow):
             self.del_backup_selector.addItem(name)
             self.restore_backup_selector.addItem(name)
 
-    def settings_save_btn_clicked(self):
+    def settings_save(self):
         settings.set_font_size(self.font_size_selector.value())
         settings.set_target_retention_rate(self.target_retention_rate_selector.value())
 
         self.clear_layout(self.root_grid_layout)
         self.setup_ui(check_for_update=False, maximize=False)
-        self.menu_settings_btn_clicked()
-
-    def settings_cancel_btn_clicked(self):
         self.menu_settings_btn_clicked()
 
     def menu_stats_btn_clicked(self):
