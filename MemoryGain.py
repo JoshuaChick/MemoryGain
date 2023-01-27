@@ -177,6 +177,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.font_size_selector.setValue(settings.get_font_size())
+        self.font_size_selector.textChanged.connect(lambda: self.settings_save_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.font_size_selector, 0, 2, 1, 1)
 
         horizontal_line_1 = QtWidgets.QFrame(self.central_widget)
@@ -197,6 +198,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.target_retention_rate_selector.setValue(settings.get_target_retention_rate())
+        self.target_retention_rate_selector.textChanged.connect(lambda: self.settings_save_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_selector, 2, 2, 1, 1)
 
         horizontal_line_2 = QtWidgets.QFrame(self.central_widget)
