@@ -456,49 +456,46 @@ class MainWindow(QMainWindow):
             for name in deck_names:
                 self.search_deck_selector.addItem(name.replace('\n', ''))
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
+            self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
             self.main_frame_grid_layout.addWidget(self.search_deck_selector, 1, 0, 1, 2)
 
             self.search_qst_text = QtWidgets.QTextEdit()
             self.search_qst_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_qst_text.setTabChangesFocus(True)
+            self.search_qst_text.textChanged.connect(self.search_save)
             self.main_frame_grid_layout.addWidget(self.search_qst_text, 2, 0, 1, 2)
 
             self.search_ans_text = QtWidgets.QTextEdit()
             self.search_ans_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
             self.search_ans_text.setTabChangesFocus(True)
+            self.search_ans_text.textChanged.connect(self.search_save)
             self.main_frame_grid_layout.addWidget(self.search_ans_text, 3, 0, 1, 2)
 
             self.search_lower_frame = QtWidgets.QFrame()
             self.search_lower_frame_grid_layout = QtWidgets.QGridLayout(self.search_lower_frame)
 
-            self.search_save_btn = QtWidgets.QPushButton()
-            self.search_save_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-            self.search_save_btn.setText('Save')
-            self.search_save_btn.clicked.connect(lambda: self.search_save_btn_clicked())
-            self.search_lower_frame_grid_layout.addWidget(self.search_save_btn, 0, 0, 1, 1)
-
             self.search_del_btn = QtWidgets.QPushButton()
             self.search_del_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_del_btn.setText('Delete')
             self.search_del_btn.clicked.connect(lambda: self.search_del_btn_clicked())
-            self.search_lower_frame_grid_layout.addWidget(self.search_del_btn, 0, 1, 1, 1)
+            self.search_lower_frame_grid_layout.addWidget(self.search_del_btn, 0, 0, 1, 1)
 
             search_lower_frame_center_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-            self.search_lower_frame_grid_layout.addItem(search_lower_frame_center_spacer, 0, 2, 1, 1)
+            self.search_lower_frame_grid_layout.addItem(search_lower_frame_center_spacer, 0, 1, 1, 1)
 
             self.search_previous_btn = QtWidgets.QPushButton()
             self.search_previous_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_previous_btn.setText('<')
             self.search_previous_btn.clicked.connect(lambda: self.search_previous_btn_clicked())
-            self.search_lower_frame_grid_layout.addWidget(self.search_previous_btn, 0, 3, 1, 1)
+            self.search_lower_frame_grid_layout.addWidget(self.search_previous_btn, 0, 2, 1, 1)
 
             self.search_next_btn = QtWidgets.QPushButton()
             self.search_next_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_next_btn.setText('>')
             self.search_next_btn.clicked.connect(lambda: self.search_next_btn_clicked())
-            self.search_lower_frame_grid_layout.addWidget(self.search_next_btn, 0, 4, 1, 1)
+            self.search_lower_frame_grid_layout.addWidget(self.search_next_btn, 0, 3, 1, 1)
 
             self.adjust_search_nav_btns()
 
@@ -512,7 +509,7 @@ class MainWindow(QMainWindow):
             query_not_found_msg.setText('There were no cards that contained that query.')
             query_not_found_msg.exec_()
 
-    def search_save_btn_clicked(self):
+    def search_save(self):
         search_qst = self.search_qst_text.toPlainText().strip()
         search_ans = self.search_ans_text.toPlainText().strip()
 
@@ -548,6 +545,11 @@ class MainWindow(QMainWindow):
         cards.del_card(self.searched_cards[self.search_up_to])
         self.searched_cards.pop(self.search_up_to)
 
+        # Sets textChanged events to nothing (to avoid unnecessarily saving when changing cards).
+        self.search_deck_selector.currentTextChanged.disconnect()
+        self.search_qst_text.textChanged.disconnect()
+        self.search_ans_text.textChanged.disconnect()
+
         if len(self.searched_cards) == 0:
             self.menu_search_btn_clicked()
         elif len(self.searched_cards) == self.search_up_to:
@@ -561,6 +563,10 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
+        self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
+        self.search_qst_text.textChanged.connect(lambda: self.search_save())
+        self.search_ans_text.textChanged.connect(lambda: self.search_save())
+
         self.adjust_search_nav_btns()
 
         self.menu_study_btn.setText(f'Study {cards.get_num_to_study()}')
@@ -569,19 +575,38 @@ class MainWindow(QMainWindow):
         if self.search_up_to > 0:
             self.search_up_to = self.search_up_to - 1
 
+            # Sets textChanged events to nothing (to avoid unnecessarily saving when changing cards).
+            self.search_deck_selector.currentTextChanged.disconnect()
+            self.search_qst_text.textChanged.disconnect()
+            self.search_ans_text.textChanged.disconnect()
+
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
+
+            self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
+            self.search_qst_text.textChanged.connect(lambda: self.search_save())
+            self.search_ans_text.textChanged.connect(lambda: self.search_save())
 
             self.adjust_search_nav_btns()
 
     def search_next_btn_clicked(self):
         if self.search_up_to < len(self.searched_cards) - 1:
+
+            # Sets textChanged events to nothing (to avoid unnecessarily saving when changing cards).
+            self.search_deck_selector.currentTextChanged.disconnect()
+            self.search_qst_text.textChanged.disconnect()
+            self.search_ans_text.textChanged.disconnect()
+
             self.search_up_to = self.search_up_to + 1
 
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
+
+            self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
+            self.search_qst_text.textChanged.connect(lambda: self.search_save())
+            self.search_ans_text.textChanged.connect(lambda: self.search_save())
 
             self.adjust_search_nav_btns()
 
