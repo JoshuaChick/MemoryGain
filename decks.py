@@ -43,7 +43,10 @@ def get_deck_lines():
     Returns a list with all the lines in decks.txt (each line corresponds to a deck).
     """
     with open(f'{temp_path}\\..\\MemoryGain\\decks.txt', 'r') as decks_text:
-        return decks_text.readlines()
+        lines = decks_text.readlines()
+        for i in range(len(lines)):
+            lines[i] = lines[i].replace('\n', '')
+        return lines
 
 
 def del_deck(deck):

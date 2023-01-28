@@ -402,8 +402,8 @@ class MainWindow(QMainWindow):
             self.search_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
             self.search_deck_selector.setMinimumHeight(60)
             deck_names = decks.get_deck_lines()
-            for name in deck_names:
-                self.search_deck_selector.addItem(name.replace('\n', ''))
+            for deck in deck_names:
+                self.search_deck_selector.addItem(deck)
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
             self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
             self.main_frame_grid_layout.addWidget(self.search_deck_selector, 1, 0, 1, 2)
@@ -698,7 +698,6 @@ class MainWindow(QMainWindow):
             self.add_cards_deck_selector.setMinimumHeight(60)
             deck_lines = decks.get_deck_lines()
             for deck in deck_lines:
-                deck = deck.replace('\n', '')
                 self.add_cards_deck_selector.addItem(deck)
             self.add_cards_deck_selector.setCurrentIndex(-1)
             self.add_cards_upper_frame_grid_layout.addWidget(self.add_cards_deck_selector, 0, 0, 1, 1)
@@ -787,7 +786,7 @@ class MainWindow(QMainWindow):
         self.deck_list_widget = QtWidgets.QListWidget()
         deck_lines = decks.get_deck_lines()
         for deck in deck_lines:
-            self.deck_list_widget.addItem(deck.replace('\n', ''))
+            self.deck_list_widget.addItem(deck)
         self.deck_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.main_frame_grid_layout.addWidget(self.deck_list_widget, 1, 0, 3, 1)
 
