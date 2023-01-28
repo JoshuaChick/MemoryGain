@@ -28,7 +28,6 @@ import stats
 import settings
 import backups
 import update
-from time import sleep
 
 
 class MainWindow(QMainWindow):
@@ -801,9 +800,6 @@ class MainWindow(QMainWindow):
         self.rename_deck_btn.setText('Rename')
         self.rename_deck_btn.clicked.connect(lambda: self.rename_deck_btn_clicked())
         self.main_frame_grid_layout.addWidget(self.rename_deck_btn, 2, 1, 1, 1)
-
-        # deck_lower_left_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        # self.main_frame_grid_layout.addItem(deck_lower_left_spacer, 3, 0, 1, 1)
 
         deck_lower_right_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.main_frame_grid_layout.addItem(deck_lower_right_spacer, 3, 1, 1, 1)
