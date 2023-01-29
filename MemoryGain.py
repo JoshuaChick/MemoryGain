@@ -102,42 +102,42 @@ class MainWindow(QMainWindow):
         self.menu_study_btn.setObjectName("menu_study_btn")
         self.menu_study_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_study_btn.setText(f"Study {cards.get_num_to_study()}")
-        self.menu_study_btn.clicked.connect(lambda: self.menu_study_btn_clicked())
+        self.menu_study_btn.clicked.connect(self.menu_study_btn_clicked)
         self.menu_frame_grid_layout.addWidget(self.menu_study_btn, 0, 0, 1, 1)
 
         self.menu_add_cards_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_add_cards_btn.setObjectName("menu_add_cards_btn")
         self.menu_add_cards_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_add_cards_btn.setText("Add Cards")
-        self.menu_add_cards_btn.clicked.connect(lambda: self.menu_add_cards_btn_clicked())
+        self.menu_add_cards_btn.clicked.connect(self.menu_add_cards_btn_clicked)
         self.menu_frame_grid_layout.addWidget(self.menu_add_cards_btn, 1, 0, 1, 1)
 
         self.menu_decks_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_decks_btn.setObjectName("menu_decks_btn")
         self.menu_decks_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_decks_btn.setText("Decks")
-        self.menu_decks_btn.clicked.connect(lambda: self.menu_decks_btn_clicked())
+        self.menu_decks_btn.clicked.connect(self.menu_decks_btn_clicked)
         self.menu_frame_grid_layout.addWidget(self.menu_decks_btn, 2, 0, 1, 1)
 
         self.menu_search_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_search_btn.setObjectName("menu_search_btn")
         self.menu_search_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_search_btn.setText("Search")
-        self.menu_search_btn.clicked.connect(lambda: self.menu_search_btn_clicked())
+        self.menu_search_btn.clicked.connect(self.menu_search_btn_clicked)
         self.menu_frame_grid_layout.addWidget(self.menu_search_btn, 3, 0, 1, 1)
 
         self.menu_stats_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_stats_btn.setObjectName("menu_stats_btn")
         self.menu_stats_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_stats_btn.setText("Statistics")
-        self.menu_stats_btn.clicked.connect(lambda: self.menu_stats_btn_clicked())
+        self.menu_stats_btn.clicked.connect(self.menu_stats_btn_clicked)
         self.menu_frame_grid_layout.addWidget(self.menu_stats_btn, 4, 0, 1, 1)
 
         self.menu_settings_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_settings_btn.setObjectName("menu_settings_btn")
         self.menu_settings_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_settings_btn.setText("Settings")
-        self.menu_settings_btn.clicked.connect(lambda: self.menu_settings_btn_clicked())
+        self.menu_settings_btn.clicked.connect(self.menu_settings_btn_clicked)
         self.menu_frame_grid_layout.addWidget(self.menu_settings_btn, 5, 0, 1, 1)
 
         menu_frame_spacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.font_size_selector.setValue(settings.get_font_size())
-        self.font_size_selector.textChanged.connect(lambda: self.settings_save())
+        self.font_size_selector.textChanged.connect(self.settings_save)
         self.main_frame_grid_layout.addWidget(self.font_size_selector, 0, 2, 1, 1)
 
         horizontal_line_1 = QtWidgets.QFrame(self.central_widget)
@@ -198,7 +198,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.target_retention_rate_selector.setValue(settings.get_target_retention_rate())
-        self.target_retention_rate_selector.textChanged.connect(lambda: self.settings_save())
+        self.target_retention_rate_selector.textChanged.connect(self.settings_save)
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_selector, 2, 2, 1, 1)
 
         horizontal_line_2 = QtWidgets.QFrame(self.central_widget)
@@ -214,7 +214,7 @@ class MainWindow(QMainWindow):
         self.create_backup_btn = QtWidgets.QPushButton()
         self.create_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.create_backup_btn.setText('Backup')
-        self.create_backup_btn.clicked.connect(lambda: self.create_backup_btn_clicked())
+        self.create_backup_btn.clicked.connect(self.create_backup_btn_clicked)
         self.main_frame_grid_layout.addWidget(self.create_backup_btn, 4, 2, 1, 1)
 
         self.backup_list_widget = QtWidgets.QListWidget()
@@ -227,13 +227,13 @@ class MainWindow(QMainWindow):
         self.del_backup_btn = QtWidgets.QPushButton()
         self.del_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.del_backup_btn.setText('Delete')
-        self.del_backup_btn.clicked.connect(lambda: self.del_backup_btn_clicked())
+        self.del_backup_btn.clicked.connect(self.del_backup_btn_clicked)
         self.main_frame_grid_layout.addWidget(self.del_backup_btn, 5, 2, 1, 1)
 
         self.restore_backup_btn = QtWidgets.QPushButton()
         self.restore_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.restore_backup_btn.setText('Restore')
-        self.restore_backup_btn.clicked.connect(lambda: self.restore_backup_btn_clicked())
+        self.restore_backup_btn.clicked.connect(self.restore_backup_btn_clicked)
         self.main_frame_grid_layout.addWidget(self.restore_backup_btn, 6, 2, 1, 1)
 
         settings_lower_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -404,7 +404,7 @@ class MainWindow(QMainWindow):
             for deck in deck_names:
                 self.search_deck_selector.addItem(deck)
             self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
-            self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
+            self.search_deck_selector.currentTextChanged.connect(self.search_save)
             self.main_frame_grid_layout.addWidget(self.search_deck_selector, 1, 0, 1, 2)
 
             self.search_qst_text = QtWidgets.QTextEdit()
@@ -427,7 +427,7 @@ class MainWindow(QMainWindow):
             self.search_del_btn = QtWidgets.QPushButton()
             self.search_del_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_del_btn.setText('Delete')
-            self.search_del_btn.clicked.connect(lambda: self.search_del_btn_clicked())
+            self.search_del_btn.clicked.connect(self.search_del_btn_clicked)
             self.search_lower_frame_grid_layout.addWidget(self.search_del_btn, 0, 0, 1, 1)
 
             search_lower_frame_center_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -436,13 +436,13 @@ class MainWindow(QMainWindow):
             self.search_previous_btn = QtWidgets.QPushButton()
             self.search_previous_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_previous_btn.setText('<')
-            self.search_previous_btn.clicked.connect(lambda: self.search_previous_btn_clicked())
+            self.search_previous_btn.clicked.connect(self.search_previous_btn_clicked)
             self.search_lower_frame_grid_layout.addWidget(self.search_previous_btn, 0, 2, 1, 1)
 
             self.search_next_btn = QtWidgets.QPushButton()
             self.search_next_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_next_btn.setText('>')
-            self.search_next_btn.clicked.connect(lambda: self.search_next_btn_clicked())
+            self.search_next_btn.clicked.connect(self.search_next_btn_clicked)
             self.search_lower_frame_grid_layout.addWidget(self.search_next_btn, 0, 3, 1, 1)
 
             self.adjust_search_nav_btns()
@@ -511,9 +511,9 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
-        self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
-        self.search_qst_text.textChanged.connect(lambda: self.search_save())
-        self.search_ans_text.textChanged.connect(lambda: self.search_save())
+        self.search_deck_selector.currentTextChanged.connect(self.search_save)
+        self.search_qst_text.textChanged.connect(self.search_save)
+        self.search_ans_text.textChanged.connect(self.search_save)
 
         self.adjust_search_nav_btns()
 
@@ -532,9 +532,9 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
-            self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
-            self.search_qst_text.textChanged.connect(lambda: self.search_save())
-            self.search_ans_text.textChanged.connect(lambda: self.search_save())
+            self.search_deck_selector.currentTextChanged.connect(self.search_save)
+            self.search_qst_text.textChanged.connect(self.search_save)
+            self.search_ans_text.textChanged.connect(self.search_save)
 
             self.adjust_search_nav_btns()
 
@@ -552,9 +552,9 @@ class MainWindow(QMainWindow):
             self.search_qst_text.setPlainText(self.searched_cards[self.search_up_to]['Question'])
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
 
-            self.search_deck_selector.currentTextChanged.connect(lambda: self.search_save())
-            self.search_qst_text.textChanged.connect(lambda: self.search_save())
-            self.search_ans_text.textChanged.connect(lambda: self.search_save())
+            self.search_deck_selector.currentTextChanged.connect(self.search_save)
+            self.search_qst_text.textChanged.connect(self.search_save)
+            self.search_ans_text.textChanged.connect(self.search_save)
 
             self.adjust_search_nav_btns()
 
@@ -620,7 +620,7 @@ class MainWindow(QMainWindow):
             self.study_ans_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.study_ans_btn.setText("Answer")
             self.study_ans_btn.setFocus()
-            self.study_ans_btn.clicked.connect(lambda: self.study_ans_btn_clicked())
+            self.study_ans_btn.clicked.connect(self.study_ans_btn_clicked)
             self.study_lower_btns_frame_grid_layout.addWidget(self.study_ans_btn, 0, 1, 1, 1)
 
             study_lower_btns_frame_right_spacer = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -656,7 +656,7 @@ class MainWindow(QMainWindow):
         self.study_correct_btn = QtWidgets.QPushButton()
         self.study_correct_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.study_correct_btn.setText('Correct')
-        self.study_correct_btn.clicked.connect(lambda: self.study_correct_btn_clicked())
+        self.study_correct_btn.clicked.connect(self.study_correct_btn_clicked)
         self.study_lower_btns_frame_grid_layout.addWidget(self.study_correct_btn, 0, 1, 1, 1)
         self.study_correct_btn.setFocus()
 
@@ -666,7 +666,7 @@ class MainWindow(QMainWindow):
         self.study_again_btn = QtWidgets.QPushButton()
         self.study_again_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.study_again_btn.setText('Again')
-        self.study_again_btn.clicked.connect(lambda: self.study_again_btn_clicked())
+        self.study_again_btn.clicked.connect(self.study_again_btn_clicked)
         self.study_lower_btns_frame_grid_layout.addWidget(self.study_again_btn, 0, 3, 1, 1)
 
         study_lower_btns_frame_right_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -718,7 +718,7 @@ class MainWindow(QMainWindow):
             self.add_card_btn = QtWidgets.QPushButton()
             self.add_card_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.add_card_btn.setText('Add Card')
-            self.add_card_btn.clicked.connect(lambda: self.add_card_btn_clicked())
+            self.add_card_btn.clicked.connect(self.add_card_btn_clicked)
             self.add_cards_lower_frame_grid_layout.addWidget(self.add_card_btn, 0, 1, 1, 1)
 
             add_cards_lower_frame_left_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -779,7 +779,7 @@ class MainWindow(QMainWindow):
         self.add_deck_btn = QtWidgets.QPushButton()
         self.add_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.add_deck_btn.setText('Add Deck')
-        self.add_deck_btn.clicked.connect(lambda: self.add_deck_btn_clicked())
+        self.add_deck_btn.clicked.connect(self.add_deck_btn_clicked)
         self.main_frame_grid_layout.addWidget(self.add_deck_btn, 0, 1, 1, 1)
 
         self.deck_list_widget = QtWidgets.QListWidget()
@@ -792,13 +792,13 @@ class MainWindow(QMainWindow):
         self.del_deck_btn = QtWidgets.QPushButton()
         self.del_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.del_deck_btn.setText('Delete')
-        self.del_deck_btn.clicked.connect(lambda: self.del_deck_btn_clicked())
+        self.del_deck_btn.clicked.connect(self.del_deck_btn_clicked)
         self.main_frame_grid_layout.addWidget(self.del_deck_btn, 1, 1, 1, 1)
 
         self.rename_deck_btn = QtWidgets.QPushButton()
         self.rename_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.rename_deck_btn.setText('Rename')
-        self.rename_deck_btn.clicked.connect(lambda: self.rename_deck_btn_clicked())
+        self.rename_deck_btn.clicked.connect(self.rename_deck_btn_clicked)
         self.main_frame_grid_layout.addWidget(self.rename_deck_btn, 2, 1, 1, 1)
 
         deck_lower_right_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
