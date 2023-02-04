@@ -240,6 +240,10 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addItem(settings_lower_spacer, 7, 0, 1, 3)
 
     def restore_backup_btn_clicked(self):
+        # Returns if nothing selected.
+        if not self.backup_list_widget.selectedIndexes():
+            return
+
         confirm_restore_backup_msg = QMessageBox()
         confirm_restore_backup_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         confirm_restore_backup_msg.setWindowTitle('Confirm Deletion')
