@@ -830,10 +830,11 @@ class MainWindow(QMainWindow):
         self.add_deck_line_edit.setFocus()
 
     def del_deck_btn_clicked(self):
-        selected_deck_del = self.deck_list_widget.currentItem().text().strip()
-
-        if selected_deck_del == '':
+        # Returns if nothing is selected.
+        if not self.deck_list_widget.selectedIndexes():
             return
+
+        selected_deck_del = self.deck_list_widget.currentItem().text().strip()
 
         confirm_del_deck_msg = QMessageBox()
         confirm_del_deck_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
