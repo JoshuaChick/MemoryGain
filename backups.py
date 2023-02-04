@@ -47,8 +47,9 @@ def create_back_up(name=False):
     if name:
         if os.path.exists(f'{temp_path}\\..\\MemoryGain\\backups\\{name}'):
             return False
-        os.system(f'md {temp_path}\\..\\MemoryGain\\backups\\{name}')
-        os.system(f'copy {temp_path}\\..\\MemoryGain\\* {temp_path}\\..\\MemoryGain\\backups\\{name}')
+        # Double quotes must be used for cmd commands to avoid issues with ';' character in user-made backups.
+        os.system(f'md "{temp_path}\\..\\MemoryGain\\backups\\{name}"')
+        os.system(f'copy {temp_path}\\..\\MemoryGain\\* "{temp_path}\\..\\MemoryGain\\backups\\{name}"')
     # For auto-creation of backups:
     else:
         date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -68,14 +69,14 @@ def restore_backup(name):
         os.system(f'copy {temp_path}\\..\\MemoryGain\\backups\\{name.split("<")[0].strip()}\\* {temp_path}\\..\\MemoryGain\\')
         os.system(f'del {temp_path}\\..\\MemoryGain\\automatic')
     else:
-        os.system(f'copy {temp_path}\\..\\MemoryGain\\backups\\{name}\\* {temp_path}\\..\\MemoryGain\\')
+        os.system(f'copy "{temp_path}\\..\\MemoryGain\\backups\\{name}\\*" {temp_path}\\..\\MemoryGain\\')
 
 
 def del_backup(name):
     if '<auto>' in name:
         os.system(f'rd /s /q {temp_path}\\..\\MemoryGain\\backups\\{name.split("<")[0].strip()}')
     else:
-        os.system(f'rd /s /q {temp_path}\\..\\MemoryGain\\backups\\{name}')
+        os.system(f'rd /s /q "{temp_path}\\..\\MemoryGain\\backups\\{name}"')
 
 
 def get_backup_names():
@@ -91,11 +92,3 @@ def get_backup_names():
             names[i] = names[i] + ' <auto>'
 
     return names
-
-
-
-
-
-
-
-
