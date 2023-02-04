@@ -255,6 +255,10 @@ class MainWindow(QMainWindow):
             self.menu_settings_btn_clicked()
 
     def del_backup_btn_clicked(self):
+        # Returns if nothing selected.
+        if not self.backup_list_widget.selectedIndexes():
+            return
+
         confirm_del_backup_msg = QMessageBox()
         confirm_del_backup_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         confirm_del_backup_msg.setWindowTitle('Confirm Deletion')
