@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
                 update_msg = QMessageBox()
                 update_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
                 update_msg.setWindowTitle("Update")
-                update_msg.setText("There is an updated version available at https://memorygain.app. Would you like to download the updated version?")
+                update_msg.setText("An updated version of MemoryGain is available, would you like to update?")
                 update_msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
                 update_msg.setIcon(QMessageBox.Information)
                 update_msg.exec_()
@@ -848,10 +848,11 @@ class MainWindow(QMainWindow):
             self.menu_decks_btn_clicked()
 
     def rename_deck_btn_clicked(self):
-        selected_deck_rename = self.deck_list_widget.currentItem().text().strip()
-
-        if selected_deck_rename == '':
+        # Returns if nothing selected.
+        if not self.deck_list_widget.selectedIndexes():
             return
+
+        selected_deck_rename = self.deck_list_widget.currentItem().text().strip()
 
         saved_deck_name = ''
 
