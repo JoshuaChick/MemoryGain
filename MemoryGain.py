@@ -111,6 +111,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addWidget(self.title_maximize_btn)
 
         self.title_close_btn = QtWidgets.QPushButton()
+        self.title_close_btn.setMaximumSize(30, 30)
         self.title_close_btn.setText('X')
         self.title_close_btn.setObjectName('title_close_btn')
         self.title_close_btn.setStyleSheet('''
