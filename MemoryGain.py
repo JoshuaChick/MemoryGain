@@ -76,7 +76,11 @@ class MainWindow(QMainWindow):
         self.root_grid_layout.setObjectName("root_grid_layout")
         self.root_grid_layout.setContentsMargins(0, 0, 0, 0)
 
-        self.main_frame = QtWidgets.QFrame(self.central_widget)
+        self.title_frame = QtWidgets.QFrame()
+        self.title_frame.setMinimumHeight(30)
+        self.root_grid_layout.addWidget(self.title_frame, 0, 0, 1, 3)
+
+        self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.main_frame.setObjectName("main_frame")
@@ -84,7 +88,7 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout = QtWidgets.QGridLayout(self.main_frame)
         self.main_frame_grid_layout.setObjectName("main_frame_grid_layout")
 
-        self.root_grid_layout.addWidget(self.main_frame, 0, 2, 1, 1)
+        self.root_grid_layout.addWidget(self.main_frame, 1, 2, 1, 1)
 
         self.menu_frame = QtWidgets.QFrame(self.central_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -144,13 +148,13 @@ class MainWindow(QMainWindow):
         menu_frame_spacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.menu_frame_grid_layout.addItem(menu_frame_spacer, 6, 0, 1, 1)
 
-        self.root_grid_layout.addWidget(self.menu_frame, 0, 0, 1, 1)
+        self.root_grid_layout.addWidget(self.menu_frame, 1, 0, 1, 1)
         self.menu_separator_line = QtWidgets.QFrame(self.central_widget)
         self.menu_separator_line.setFrameShape(QtWidgets.QFrame.VLine)
         self.menu_separator_line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.menu_separator_line.setObjectName("menu_separator_line")
 
-        self.root_grid_layout.addWidget(self.menu_separator_line, 0, 1, 1, 1)
+        self.root_grid_layout.addWidget(self.menu_separator_line, 1, 1, 1, 1)
         self.setCentralWidget(self.central_widget)
 
         self.setWindowIcon(QtGui.QIcon('icon.ico'))
