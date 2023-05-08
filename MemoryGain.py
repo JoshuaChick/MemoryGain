@@ -100,6 +100,16 @@ class MainWindow(QMainWindow):
         ''')
         self.title_horizontal_layout.addWidget(self.title_minimize_btn)
 
+        self.title_maximize_btn = QtWidgets.QPushButton()
+        self.title_maximize_btn.setText('□')
+        self.title_maximize_btn.setObjectName('title_maximize_btn')
+        self.title_maximize_btn.setStyleSheet('''
+                                    QPushButton#title_maximize_btn{
+                                        background-color: transparent;
+                                    }
+                ''')
+        self.title_horizontal_layout.addWidget(self.title_maximize_btn)
+
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
