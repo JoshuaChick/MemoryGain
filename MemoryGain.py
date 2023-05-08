@@ -91,6 +91,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addItem(title_horizontal_spacer)
 
         self.title_minimize_btn = QtWidgets.QPushButton()
+        self.title_minimize_btn.setMaximumSize(30, 30)
         self.title_minimize_btn.setText('-')
         self.title_minimize_btn.setObjectName('title_minimize_btn')
         self.title_minimize_btn.setStyleSheet('''
