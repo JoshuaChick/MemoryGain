@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QSizeGrip
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 import sys
@@ -74,6 +74,7 @@ class MainWindow(QMainWindow):
 
         self.root_grid_layout = QtWidgets.QGridLayout(self.central_widget)
         self.root_grid_layout.setObjectName("root_grid_layout")
+        self.root_grid_layout.setContentsMargins(0, 0, 0, 0)
 
         self.main_frame = QtWidgets.QFrame(self.central_widget)
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
