@@ -93,7 +93,7 @@ class MainWindow(QMainWindow):
         self.title_minimize_btn = QtWidgets.QPushButton()
         self.title_minimize_btn.setText('_')
         self.title_minimize_btn.setObjectName('title_minimize_btn')
-        self.setStyleSheet('''
+        self.title_minimize_btn.setStyleSheet('''
                             QPushButton#title_minimize_btn{
                                 background-color: transparent;
                             }

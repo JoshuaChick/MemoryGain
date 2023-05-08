@@ -95,9 +95,10 @@ def rename_deck(old_name, new_name):
 
     deck_lines = get_deck_lines()
     for i in range(len(deck_lines)):
-        if deck_lines[i] == old_name + '\n':
+        if deck_lines[i] == old_name:
             deck_lines[i] = new_name + '\n'
-            break
+            continue
+        deck_lines[i] = deck_lines[i] + '\n'
 
     deck_lines.sort()
 
