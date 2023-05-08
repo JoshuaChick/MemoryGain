@@ -90,6 +90,16 @@ class MainWindow(QMainWindow):
         title_horizontal_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.title_horizontal_layout.addItem(title_horizontal_spacer)
 
+        self.title_minimize_btn = QtWidgets.QPushButton()
+        self.title_minimize_btn.setText('_')
+        self.title_minimize_btn.setObjectName('title_minimize_btn')
+        self.setStyleSheet('''
+                            QPushButton#title_minimize_btn{
+                                background-color: transparent;
+                            }
+        ''')
+        self.title_horizontal_layout.addWidget(self.title_minimize_btn)
+
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
