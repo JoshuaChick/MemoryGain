@@ -87,6 +87,9 @@ class MainWindow(QMainWindow):
         self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.title_horizontal_layout.addWidget(self.title_app_name_label)
 
+        title_horizontal_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.title_horizontal_layout.addItem(title_horizontal_spacer)
+
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
