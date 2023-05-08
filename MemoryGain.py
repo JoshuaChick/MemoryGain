@@ -110,6 +110,16 @@ class MainWindow(QMainWindow):
                 ''')
         self.title_horizontal_layout.addWidget(self.title_maximize_btn)
 
+        self.title_close_btn = QtWidgets.QPushButton()
+        self.title_close_btn.setText('X')
+        self.title_close_btn.setObjectName('title_close_btn')
+        self.title_close_btn.setStyleSheet('''
+                                            QPushButton#title_close_btn{
+                                                background-color: transparent;
+                                            }
+                        ''')
+        self.title_horizontal_layout.addWidget(self.title_close_btn)
+
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
