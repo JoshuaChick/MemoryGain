@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
 
         self.title_app_name_label = QtWidgets.QLabel()
         self.title_app_name_label.setText('MemoryGain')
-        self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', 10))
         self.title_horizontal_layout.addWidget(self.title_app_name_label)
 
         title_horizontal_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
