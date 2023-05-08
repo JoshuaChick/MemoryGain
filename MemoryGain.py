@@ -101,6 +101,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addWidget(self.title_minimize_btn)
 
         self.title_maximize_btn = QtWidgets.QPushButton()
+        self.title_maximize_btn.setMaximumSize(30, 30)
         self.title_maximize_btn.setText('□')
         self.title_maximize_btn.setObjectName('title_maximize_btn')
         self.title_maximize_btn.setStyleSheet('''
