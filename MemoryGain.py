@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QSizeGrip
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtCore import Qt
 import sys
 from subprocess import PIPE, Popen
@@ -79,6 +79,8 @@ class MainWindow(QMainWindow):
         self.title_frame = QtWidgets.QFrame()
         self.title_frame.setMinimumHeight(30)
         self.root_grid_layout.addWidget(self.title_frame, 0, 0, 1, 3)
+
+        self.title_horizontal_layout = QtWidgets.QHBoxLayout(self.title_frame)
 
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
