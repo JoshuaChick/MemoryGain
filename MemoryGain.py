@@ -82,6 +82,11 @@ class MainWindow(QMainWindow):
 
         self.title_horizontal_layout = QtWidgets.QHBoxLayout(self.title_frame)
 
+        self.title_app_name_label = QtWidgets.QLabel()
+        self.title_app_name_label.setText('MemoryGain')
+        self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.title_horizontal_layout.addWidget(self.title_app_name_label)
+
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
