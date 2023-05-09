@@ -118,6 +118,7 @@ class MainWindow(QMainWindow):
 
         self.title_close_btn = QtWidgets.QPushButton()
         self.title_close_btn.setMaximumSize(50, 30)
+        self.title_close_btn.clicked.connect(self.title_close_btn_clicked)
         self.title_close_btn.setFont(QFont('MS Shell Dlg 2', 10))
         self.title_close_btn.setText('x')
         self.title_close_btn.setObjectName('title_close_btn')
@@ -203,10 +204,17 @@ class MainWindow(QMainWindow):
         self.menu_separator_line.setObjectName("menu_separator_line")
         self.root_grid_layout.addWidget(self.menu_separator_line, 1, 1, 1, 1)
 
+        self.resizer_horizontal_layout = QtWidgets.QHBoxLayout()
+
+        resizer_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.resizer_horizontal_layout.addItem(resizer_spacer)
+
         self.resize_window_frame = QtWidgets.QFrame()
         self.resize_window_frame.setMinimumSize(20, 20)
         QtWidgets.QSizeGrip(self.resize_window_frame)
-        self.root_grid_layout.addWidget(self.resize_window_frame, 2, 3, 1, 3)
+        self.resizer_horizontal_layout.addWidget(self.resize_window_frame)
+
+        self.root_grid_layout.addLayout(self.resizer_horizontal_layout, 2, 0, 1, 3)
 
         self.setCentralWidget(self.central_widget)
 
@@ -219,6 +227,9 @@ class MainWindow(QMainWindow):
 
     def title_maximize_btn_clicked(self):
         self.showMaximized()
+
+    def title_close_btn_clicked(self):
+        self.close()
 
     def menu_settings_btn_clicked(self):
         self.clear_layout(self.main_frame_grid_layout)
