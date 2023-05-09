@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addItem(title_horizontal_spacer)
 
         self.title_minimize_btn = QtWidgets.QPushButton()
-        self.title_minimize_btn.setMaximumSize(30, 30)
+        self.title_minimize_btn.setMaximumSize(50, 30)
         self.title_minimize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_minimize_btn.setText('-')
         self.title_minimize_btn.setObjectName('title_minimize_btn')
@@ -103,7 +103,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addWidget(self.title_minimize_btn)
 
         self.title_maximize_btn = QtWidgets.QPushButton()
-        self.title_maximize_btn.setMaximumSize(30, 30)
+        self.title_maximize_btn.setMaximumSize(50, 30)
         self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_maximize_btn.setText('□')
         self.title_maximize_btn.setObjectName('title_maximize_btn')
@@ -115,7 +115,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addWidget(self.title_maximize_btn)
 
         self.title_close_btn = QtWidgets.QPushButton()
-        self.title_close_btn.setMaximumSize(30, 30)
+        self.title_close_btn.setMaximumSize(50, 30)
         self.title_close_btn.setFont(QFont('MS Shell Dlg 2', 10))
         self.title_close_btn.setText('x')
         self.title_close_btn.setObjectName('title_close_btn')
