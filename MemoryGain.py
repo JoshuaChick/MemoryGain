@@ -92,6 +92,7 @@ class MainWindow(QMainWindow):
 
         self.title_minimize_btn = QtWidgets.QPushButton()
         self.title_minimize_btn.setMaximumSize(30, 30)
+        self.title_minimize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_minimize_btn.setText('-')
         self.title_minimize_btn.setObjectName('title_minimize_btn')
         self.title_minimize_btn.setStyleSheet('''
