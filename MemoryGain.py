@@ -105,6 +105,7 @@ class MainWindow(QMainWindow):
 
         self.title_maximize_btn = QtWidgets.QPushButton()
         self.title_maximize_btn.setMaximumSize(50, 30)
+        self.title_maximize_btn.clicked.connect(self.title_maximize_btn_clicked)
         self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_maximize_btn.setText('□')
         self.title_maximize_btn.setObjectName('title_maximize_btn')
@@ -215,6 +216,9 @@ class MainWindow(QMainWindow):
 
     def title_minimize_btn_clicked(self):
         self.showMinimized()
+
+    def title_maximize_btn_clicked(self):
+        self.showMaximized()
 
     def menu_settings_btn_clicked(self):
         self.clear_layout(self.main_frame_grid_layout)
