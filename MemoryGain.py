@@ -92,6 +92,7 @@ class MainWindow(QMainWindow):
 
         self.title_minimize_btn = QtWidgets.QPushButton()
         self.title_minimize_btn.setMaximumSize(50, 30)
+        self.title_minimize_btn.clicked.connect(self.title_minimize_btn_clicked)
         self.title_minimize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_minimize_btn.setText('-')
         self.title_minimize_btn.setObjectName('title_minimize_btn')
@@ -211,6 +212,9 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         self.menu_study_btn_clicked()
+
+    def title_minimize_btn_clicked(self):
+        self.showMinimized()
 
     def menu_settings_btn_clicked(self):
         self.clear_layout(self.main_frame_grid_layout)
