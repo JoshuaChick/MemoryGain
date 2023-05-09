@@ -226,7 +226,10 @@ class MainWindow(QMainWindow):
         self.showMinimized()
 
     def title_maximize_btn_clicked(self):
-        self.showMaximized()
+        if self.isMaximized():
+            self.showNormal()
+        else:
+            self.showMaximized()
 
     def title_close_btn_clicked(self):
         self.close()
