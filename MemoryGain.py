@@ -48,6 +48,7 @@ class MainWindow(QMainWindow):
                 if update_msg.clickedButton().text() == "&Yes":
                     update.go_to_memorygain_site()
 
+        self.setWindowFlags(Qt.FramelessWindowHint)
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
         self.setMinimumSize(1000, 600)
@@ -110,8 +111,8 @@ class MainWindow(QMainWindow):
         self.title_maximize_btn = QtWidgets.QPushButton()
         self.title_maximize_btn.setMaximumSize(50, 30)
         self.title_maximize_btn.clicked.connect(self.title_maximize_btn_clicked)
-        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
-        self.title_maximize_btn.setText('□')
+        # Sets text and font.
+        self.update_maximize_btn()
         self.title_maximize_btn.setObjectName('title_maximize_btn')
         self.title_maximize_btn.setStyleSheet('''
                                     QPushButton#title_maximize_btn{
@@ -226,6 +227,14 @@ class MainWindow(QMainWindow):
 
         self.menu_study_btn_clicked()
 
+    def update_maximize_btn(self):
+        if self.isMaximized():
+            self.title_maximize_btn.setText('◱')
+            self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 10))
+        else:
+            self.title_maximize_btn.setText('□')
+            self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
+
     def move_window(self, e):
         if self.isMaximized() and e.buttons() == Qt.LeftButton:
             self.showNormal()
@@ -248,6 +257,8 @@ class MainWindow(QMainWindow):
             self.showNormal()
         else:
             self.showMaximized()
+
+        self.update_maximize_btn()
 
     def title_close_btn_clicked(self):
         self.close()
