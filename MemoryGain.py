@@ -80,6 +80,10 @@ class MainWindow(QMainWindow):
         self.title_frame.setMinimumHeight(30)
         self.root_grid_layout.addWidget(self.title_frame, 0, 0, 1, 3)
 
+        # Makes it so user can drag by title frame.
+        self.mousePressEvent = self.mouse_press_event
+        self.title_frame.mouseMoveEvent = self.move_window
+
         self.title_horizontal_layout = QtWidgets.QHBoxLayout(self.title_frame)
 
         self.title_app_name_label = QtWidgets.QLabel()
@@ -221,6 +225,20 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         self.menu_study_btn_clicked()
+
+    def move_window(self, e):
+        if self.isMaximized() and e.buttons() == Qt.LeftButton:
+            self.showNormal()
+            cursor_x = e.globalPos().x()
+            cursor_y = e.globalPos().y()
+            self.move(cursor_x - 500, cursor_y - 10)
+
+        if e.buttons() == Qt.LeftButton:
+            self.move(self.pos() + e.globalPos() - self.click_position)
+            self.click_position = e.globalPos()
+
+    def mouse_press_event(self, e):
+        self.click_position = e.globalPos()
 
     def title_minimize_btn_clicked(self):
         self.showMinimized()
