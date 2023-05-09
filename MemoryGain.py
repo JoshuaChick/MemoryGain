@@ -199,8 +199,13 @@ class MainWindow(QMainWindow):
         self.menu_separator_line.setFrameShape(QtWidgets.QFrame.VLine)
         self.menu_separator_line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.menu_separator_line.setObjectName("menu_separator_line")
-
         self.root_grid_layout.addWidget(self.menu_separator_line, 1, 1, 1, 1)
+
+        self.resize_window_frame = QtWidgets.QFrame()
+        self.resize_window_frame.setMinimumSize(20, 20)
+        QtWidgets.QSizeGrip(self.resize_window_frame)
+        self.root_grid_layout.addWidget(self.resize_window_frame, 2, 3, 1, 3)
+
         self.setCentralWidget(self.central_widget)
 
         self.setWindowIcon(QtGui.QIcon('icon.ico'))
