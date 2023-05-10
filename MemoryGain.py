@@ -902,6 +902,8 @@ class MainWindow(QMainWindow):
             self.add_card_btn = QtWidgets.QPushButton()
             self.add_card_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.add_card_btn.setText('Add Card')
+            self.add_card_btn.setObjectName('add_card_btn')
+            self.add_card_btn.setStyleSheet('''#add_card_btn{color: white;}''')
             self.add_card_btn.clicked.connect(self.add_card_btn_clicked)
             self.add_cards_lower_frame_grid_layout.addWidget(self.add_card_btn, 0, 1, 1, 1)
 
