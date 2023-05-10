@@ -765,6 +765,7 @@ class MainWindow(QMainWindow):
 
             self.study_ans_btn = QtWidgets.QPushButton(self.study_lower_btns_frame)
             self.study_ans_btn.setObjectName("study_ans_btn")
+            self.study_ans_btn.setStyleSheet('''#study_ans_btn{color: white;}''')
             self.study_ans_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.study_ans_btn.setText("Answer")
             self.study_ans_btn.setFocus()
