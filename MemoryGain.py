@@ -874,6 +874,9 @@ class MainWindow(QMainWindow):
             self.add_cards_qst_text.setObjectName('add_cards_qst_text')
             self.add_cards_qst_text.setStyleSheet('''
                                                     #add_cards_qst_text{
+                                                        margin-right: 10px;
+                                                        margin-left: 10px;
+                                                        margin-bottom: 10px;
                                                         background-color: rgba(255, 255, 255, 0.1);
                                                         border: none;
                                                         color: white;
@@ -890,6 +893,8 @@ class MainWindow(QMainWindow):
             self.add_cards_ans_text.setObjectName('add_cards_ans_text')
             self.add_cards_ans_text.setStyleSheet('''
                                                     #add_cards_ans_text{
+                                                        margin-right: 10px;
+                                                        margin-left: 10px;
                                                         background-color: rgba(255, 255, 255, 0.1);
                                                         border: none;
                                                         color: white;
