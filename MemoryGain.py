@@ -127,8 +127,8 @@ class MainWindow(QMainWindow):
         self.title_maximize_btn = QtWidgets.QPushButton()
         self.title_maximize_btn.setMaximumSize(70, 40)
         self.title_maximize_btn.clicked.connect(self.title_maximize_btn_clicked)
-        self.title_maximize_btn.setText('□')
-        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
+        self.title_maximize_btn.setText('☐')
+        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 10))
         self.title_maximize_btn.setObjectName('title_maximize_btn')
         self.title_maximize_btn.setStyleSheet('''
                                     #title_maximize_btn{
@@ -261,8 +261,8 @@ class MainWindow(QMainWindow):
 
     def show_normal(self):
         self.showNormal()
-        self.title_maximize_btn.setText('□')
-        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
+        self.title_maximize_btn.setText('☐')
+        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 10))
 
     def move_window(self, e):
         if self.isMaximized() and e.buttons() == Qt.LeftButton:
