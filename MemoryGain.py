@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
-        self.setMinimumSize(1000, 600)
+        self.setMinimumSize(1000, 700)
 
         self.setStyleSheet('''
                             QPushButton{
