@@ -737,7 +737,7 @@ class MainWindow(QMainWindow):
                                             #study_qst_text{
                                                 background-color: transparent;
                                                 border: none;
-                                                color: black;
+                                                color: white;
                                             }
             ''')
             self.main_frame_grid_layout.addWidget(self.study_qst_text, 0, 0, 1, 1)
