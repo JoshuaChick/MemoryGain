@@ -114,6 +114,7 @@ class MainWindow(QMainWindow):
         self.title_minimize_btn.setStyleSheet('''
                             #title_minimize_btn{
                                 background-color: transparent;
+                                color: white;
                             }
         ''')
         self.title_horizontal_layout.addWidget(self.title_minimize_btn)
@@ -127,6 +128,7 @@ class MainWindow(QMainWindow):
         self.title_maximize_btn.setStyleSheet('''
                                     #title_maximize_btn{
                                         background-color: transparent;
+                                        color: white;
                                     }
                 ''')
         self.title_horizontal_layout.addWidget(self.title_maximize_btn)
@@ -140,6 +142,7 @@ class MainWindow(QMainWindow):
         self.title_close_btn.setStyleSheet('''
                                             #title_close_btn{
                                                 background-color: transparent;
+                                                color: white;
                                             }
                         ''')
         self.title_horizontal_layout.addWidget(self.title_close_btn)
