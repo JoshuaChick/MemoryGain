@@ -83,6 +83,7 @@ class MainWindow(QMainWindow):
 
         self.title_frame = QtWidgets.QFrame()
         self.title_frame.setObjectName('title_frame')
+        self.title_frame.setStyleSheet('''#title_frame{background-color: #447777}''')
         self.title_frame.setMinimumHeight(30)
         self.root_grid_layout.addWidget(self.title_frame, 0, 0, 1, 3)
 
