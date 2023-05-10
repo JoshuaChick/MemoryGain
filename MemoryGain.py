@@ -740,9 +740,6 @@ class MainWindow(QMainWindow):
                                                 border: none;
                                                 color: white;
                                             }
-                                            QScrollBar{
-                                                background-color: rgba(255, 255, 255, 0.1);
-                                            }
             ''')
             self.main_frame_grid_layout.addWidget(self.study_qst_text, 0, 0, 1, 1)
 
@@ -880,6 +877,9 @@ class MainWindow(QMainWindow):
                                                         background-color: rgba(255, 255, 255, 0.1);
                                                         border: none;
                                                         color: white;
+                                                    }
+                                                    QScrollBar{
+                                                        background-color: rgba(255, 255, 255, 0.1);
                                                     }
             ''')
             self.add_cards_qst_text.setTabChangesFocus(True)
