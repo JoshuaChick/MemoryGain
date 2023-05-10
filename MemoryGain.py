@@ -73,7 +73,7 @@ class MainWindow(QMainWindow):
         self.central_widget.setObjectName("central_widget")
         self.central_widget.setStyleSheet('''
                                         #central_widget{
-                                            background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(99, 148, 136, 255), stop:1 rgba(73, 122, 114, 255));
+                                            background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(36, 73, 65, 255), stop:1 rgba(31, 97, 125, 255));
                                         }
         ''')
 
