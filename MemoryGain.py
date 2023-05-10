@@ -106,7 +106,7 @@ class MainWindow(QMainWindow):
         self.title_minimize_btn.setText('-')
         self.title_minimize_btn.setObjectName('title_minimize_btn')
         self.title_minimize_btn.setStyleSheet('''
-                            QPushButton#title_minimize_btn{
+                            #title_minimize_btn{
                                 background-color: transparent;
                             }
         ''')
@@ -119,7 +119,7 @@ class MainWindow(QMainWindow):
         self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_maximize_btn.setObjectName('title_maximize_btn')
         self.title_maximize_btn.setStyleSheet('''
-                                    QPushButton#title_maximize_btn{
+                                    #title_maximize_btn{
                                         background-color: transparent;
                                     }
                 ''')
@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
         self.title_close_btn.setText('x')
         self.title_close_btn.setObjectName('title_close_btn')
         self.title_close_btn.setStyleSheet('''
-                                            QPushButton#title_close_btn{
+                                            #title_close_btn{
                                                 background-color: transparent;
                                             }
                         ''')
