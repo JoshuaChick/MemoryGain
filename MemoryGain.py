@@ -785,6 +785,8 @@ class MainWindow(QMainWindow):
             self.study_completed_label = QtWidgets.QLabel()
             self.study_completed_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.study_completed_label.setText('Study completed.')
+            self.study_completed_label.setObjectName('study_completed_label')
+            self.study_completed_label.setStyleSheet('''#study_completed_label{color: white;}''')
             self.study_completed_label.setMinimumHeight(60)
             self.main_frame_grid_layout.addWidget(self.study_completed_label, 0, 0, 1, 1)
 
