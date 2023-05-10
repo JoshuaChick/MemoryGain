@@ -183,6 +183,7 @@ class MainWindow(QMainWindow):
 
         self.menu_study_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_study_btn.setObjectName("menu_study_btn")
+        self.menu_study_btn.setStyleSheet('''#menu_study_btn{color: white;}''')
         self.menu_study_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_study_btn.setText(f"Study {cards.get_num_to_study()}")
         self.menu_study_btn.clicked.connect(self.menu_study_btn_clicked)
@@ -190,6 +191,7 @@ class MainWindow(QMainWindow):
 
         self.menu_add_cards_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_add_cards_btn.setObjectName("menu_add_cards_btn")
+        self.menu_add_cards_btn.setStyleSheet('''#menu_add_cards_btn{color: white;}''')
         self.menu_add_cards_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_add_cards_btn.setText("Add Cards")
         self.menu_add_cards_btn.clicked.connect(self.menu_add_cards_btn_clicked)
@@ -197,6 +199,7 @@ class MainWindow(QMainWindow):
 
         self.menu_decks_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_decks_btn.setObjectName("menu_decks_btn")
+        self.menu_decks_btn.setStyleSheet('''#menu_decks_btn{color: white;}''')
         self.menu_decks_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_decks_btn.setText("Decks")
         self.menu_decks_btn.clicked.connect(self.menu_decks_btn_clicked)
@@ -204,6 +207,7 @@ class MainWindow(QMainWindow):
 
         self.menu_search_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_search_btn.setObjectName("menu_search_btn")
+        self.menu_search_btn.setStyleSheet('''#menu_search_btn{color: white;}''')
         self.menu_search_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_search_btn.setText("Search")
         self.menu_search_btn.clicked.connect(self.menu_search_btn_clicked)
@@ -211,6 +215,7 @@ class MainWindow(QMainWindow):
 
         self.menu_stats_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_stats_btn.setObjectName("menu_stats_btn")
+        self.menu_stats_btn.setStyleSheet('''#menu_stats_btn{color: white;}''')
         self.menu_stats_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_stats_btn.setText("Statistics")
         self.menu_stats_btn.clicked.connect(self.menu_stats_btn_clicked)
@@ -218,6 +223,7 @@ class MainWindow(QMainWindow):
 
         self.menu_settings_btn = QtWidgets.QPushButton(self.menu_frame)
         self.menu_settings_btn.setObjectName("menu_settings_btn")
+        self.menu_settings_btn.setStyleSheet('''#menu_settings_btn{color: white;}''')
         self.menu_settings_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.menu_settings_btn.setText("Settings")
         self.menu_settings_btn.clicked.connect(self.menu_settings_btn_clicked)
