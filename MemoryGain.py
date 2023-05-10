@@ -854,7 +854,7 @@ class MainWindow(QMainWindow):
             self.add_cards_deck_selector.setObjectName('add_cards_deck_selector')
             self.add_cards_deck_selector.setStyleSheet('''
                                                         #add_cards_deck_selector{
-                                                            background-color: rgba(255, 255, 255, 0.3);
+                                                            background-color: rgba(255, 255, 255, 0.1);
                                                             border: none;
                                                             color: white;
                                                         }
@@ -871,6 +871,14 @@ class MainWindow(QMainWindow):
 
             self.add_cards_qst_text = QtWidgets.QTextEdit()
             self.add_cards_qst_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            self.add_cards_qst_text.setObjectName('add_cards_qst_text')
+            self.add_cards_qst_text.setStyleSheet('''
+                                                    #add_cards_qst_text{
+                                                        background-color: rgba(255, 255, 255, 0.1);
+                                                        border: none;
+                                                        color: white;
+                                                    }
+            ''')
             self.add_cards_qst_text.setTabChangesFocus(True)
             self.main_frame_grid_layout.addWidget(self.add_cards_qst_text, 1, 0, 1, 1)
 
