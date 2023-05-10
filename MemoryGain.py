@@ -92,6 +92,12 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout = QtWidgets.QHBoxLayout(self.title_frame)
 
         self.title_app_name_label = QtWidgets.QLabel()
+        self.title_app_name_label.setObjectName('title_app_name_label')
+        self.title_app_name_label.setStyleSheet('''
+                                                #title_app_name_label{
+                                                    color: white;
+                                                }
+        ''')
         self.title_app_name_label.setText('MemoryGain')
         self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', 10))
         self.title_horizontal_layout.addWidget(self.title_app_name_label)
