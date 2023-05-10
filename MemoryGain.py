@@ -807,6 +807,8 @@ class MainWindow(QMainWindow):
         self.study_correct_btn = QtWidgets.QPushButton()
         self.study_correct_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.study_correct_btn.setText('Correct')
+        self.study_correct_btn.setObjectName('study_correct_btn')
+        self.study_correct_btn.setStyleSheet('''#study_correct_btn{color: white;}''')
         self.study_correct_btn.clicked.connect(self.study_correct_btn_clicked)
         self.study_lower_btns_frame_grid_layout.addWidget(self.study_correct_btn, 0, 1, 1, 1)
         self.study_correct_btn.setFocus()
