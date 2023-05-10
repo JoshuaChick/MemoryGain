@@ -851,6 +851,18 @@ class MainWindow(QMainWindow):
             # The drop down list on ComboBoxes is unusually small so 4 point is added.
             self.add_cards_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
             self.add_cards_deck_selector.setMinimumHeight(60)
+            self.add_cards_deck_selector.setObjectName('add_cards_deck_selector')
+            self.add_cards_deck_selector.setStyleSheet('''
+                                                        #add_cards_deck_selector{
+                                                            background-color: rgba(255, 255, 255, 0.3);
+                                                            border: none;
+                                                            color: white;
+                                                        }
+                                                        #add_cards_deck_selector QAbstractItemView{
+                                                            background-color: #447777;
+                                                            color: white;
+                                                        }
+            ''')
             deck_lines = decks.get_deck_lines()
             for deck in deck_lines:
                 self.add_cards_deck_selector.addItem(deck)
