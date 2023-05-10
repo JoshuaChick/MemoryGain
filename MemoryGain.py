@@ -858,7 +858,7 @@ class MainWindow(QMainWindow):
                                                             border: none;
                                                             color: white;
                                                         }
-                                                        #add_cards_deck_selector QAbstractItemView{
+                                                        QAbstractItemView{
                                                             background-color: #447777;
                                                             color: white;
                                                         }
