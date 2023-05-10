@@ -17,8 +17,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QSizeGrip
-from PyQt5.QtGui import QFont, QPixmap
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 import sys
 from subprocess import PIPE, Popen
@@ -52,8 +52,6 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("MemoryGain")
         self.setObjectName("main_window")
         self.setMinimumSize(1000, 600)
-        if maximize:
-            self.showMaximized()
 
         self.setStyleSheet('''
                             QPushButton{
@@ -111,8 +109,8 @@ class MainWindow(QMainWindow):
         self.title_maximize_btn = QtWidgets.QPushButton()
         self.title_maximize_btn.setMaximumSize(50, 30)
         self.title_maximize_btn.clicked.connect(self.title_maximize_btn_clicked)
-        # Sets text and font.
-        self.update_maximize_btn()
+        self.title_maximize_btn.setText('□')
+        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_maximize_btn.setObjectName('title_maximize_btn')
         self.title_maximize_btn.setStyleSheet('''
                                     QPushButton#title_maximize_btn{
@@ -227,17 +225,22 @@ class MainWindow(QMainWindow):
 
         self.menu_study_btn_clicked()
 
-    def update_maximize_btn(self):
-        if self.isMaximized():
-            self.title_maximize_btn.setText('◱')
-            self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 10))
-        else:
-            self.title_maximize_btn.setText('□')
-            self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
+        if maximize:
+            self.show_maximized()
+
+    def show_maximized(self):
+        self.showMaximized()
+        self.title_maximize_btn.setText('◱')
+        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 10))
+
+    def show_normal(self):
+        self.showNormal()
+        self.title_maximize_btn.setText('□')
+        self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
 
     def move_window(self, e):
         if self.isMaximized() and e.buttons() == Qt.LeftButton:
-            self.showNormal()
+            self.show_normal()
             cursor_x = e.globalPos().x()
             cursor_y = e.globalPos().y()
             self.move(cursor_x - 500, cursor_y - 10)
@@ -254,11 +257,9 @@ class MainWindow(QMainWindow):
 
     def title_maximize_btn_clicked(self):
         if self.isMaximized():
-            self.showNormal()
+            self.show_normal()
         else:
-            self.showMaximized()
-
-        self.update_maximize_btn()
+            self.show_maximized()
 
     def title_close_btn_clicked(self):
         self.close()
