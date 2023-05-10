@@ -884,6 +884,14 @@ class MainWindow(QMainWindow):
 
             self.add_cards_ans_text = QtWidgets.QTextEdit()
             self.add_cards_ans_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            self.add_cards_ans_text.setObjectName('add_cards_ans_text')
+            self.add_cards_ans_text.setStyleSheet('''
+                                                                #add_cards_ans_text{
+                                                                    background-color: rgba(255, 255, 255, 0.1);
+                                                                    border: none;
+                                                                    color: white;
+                                                                }
+                        ''')
             self.add_cards_ans_text.setTabChangesFocus(True)
             self.main_frame_grid_layout.addWidget(self.add_cards_ans_text, 2, 0, 1, 1)
 
