@@ -91,6 +91,7 @@ class MainWindow(QMainWindow):
         self.title_frame.mouseMoveEvent = self.move_window
 
         self.title_horizontal_layout = QtWidgets.QHBoxLayout(self.title_frame)
+        self.title_horizontal_layout.setContentsMargins(0, 0, 0, 0)
 
         self.title_app_name_label = QtWidgets.QLabel()
         self.title_app_name_label.setObjectName('title_app_name_label')
@@ -99,7 +100,7 @@ class MainWindow(QMainWindow):
                                                     color: white;
                                                 }
         ''')
-        self.title_app_name_label.setText('MemoryGain')
+        self.title_app_name_label.setText('   MemoryGain')
         self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', 10))
         self.title_horizontal_layout.addWidget(self.title_app_name_label)
 
@@ -107,7 +108,7 @@ class MainWindow(QMainWindow):
         self.title_horizontal_layout.addItem(title_horizontal_spacer)
 
         self.title_minimize_btn = QtWidgets.QPushButton()
-        self.title_minimize_btn.setMaximumSize(50, 30)
+        self.title_minimize_btn.setMaximumSize(70, 40)
         self.title_minimize_btn.clicked.connect(self.title_minimize_btn_clicked)
         self.title_minimize_btn.setFont(QFont('MS Shell Dlg 2', 14))
         self.title_minimize_btn.setText('-')
@@ -117,11 +118,14 @@ class MainWindow(QMainWindow):
                                 background-color: transparent;
                                 color: white;
                             }
+                            #title_minimize_btn::hover{
+                                background-color: rgba(255, 255, 255, 0.1);
+                            }
         ''')
         self.title_horizontal_layout.addWidget(self.title_minimize_btn)
 
         self.title_maximize_btn = QtWidgets.QPushButton()
-        self.title_maximize_btn.setMaximumSize(50, 30)
+        self.title_maximize_btn.setMaximumSize(70, 40)
         self.title_maximize_btn.clicked.connect(self.title_maximize_btn_clicked)
         self.title_maximize_btn.setText('□')
         self.title_maximize_btn.setFont(QFont('MS Shell Dlg 2', 14))
@@ -131,19 +135,25 @@ class MainWindow(QMainWindow):
                                         background-color: transparent;
                                         color: white;
                                     }
+                                    #title_maximize_btn::hover{
+                                       background-color: rgba(255, 255, 255, 0.1);
+                                    }
                 ''')
         self.title_horizontal_layout.addWidget(self.title_maximize_btn)
 
         self.title_close_btn = QtWidgets.QPushButton()
-        self.title_close_btn.setMaximumSize(50, 30)
+        self.title_close_btn.setMaximumSize(70, 40)
         self.title_close_btn.clicked.connect(self.title_close_btn_clicked)
-        self.title_close_btn.setFont(QFont('MS Shell Dlg 2', 10))
-        self.title_close_btn.setText('x')
+        self.title_close_btn.setFont(QFont('MS Shell Dlg 2', 9))
+        self.title_close_btn.setText('X')
         self.title_close_btn.setObjectName('title_close_btn')
         self.title_close_btn.setStyleSheet('''
                                             #title_close_btn{
                                                 background-color: transparent;
                                                 color: white;
+                                            }
+                                            #title_close_btn::hover{
+                                                background-color: rgba(255, 255, 255, 0.1);
                                             }
                         ''')
         self.title_horizontal_layout.addWidget(self.title_close_btn)
