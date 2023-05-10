@@ -79,7 +79,7 @@ class MainWindow(QMainWindow):
         self.title_frame.setObjectName('title_frame')
         self.title_frame.setStyleSheet('''
                                         #title_frame{
-                                            background-color: #00B395;
+                                            background-color: #004D40;
                                         }
         ''')
         self.title_frame.setMinimumHeight(30)
