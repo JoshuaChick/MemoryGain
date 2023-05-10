@@ -751,7 +751,7 @@ class MainWindow(QMainWindow):
                                                 #study_ans_text{
                                                     background-color: transparent;
                                                     border: none;
-                                                    color: black;
+                                                    color: white;
                                                 }
             ''')
             self.main_frame_grid_layout.addWidget(self.study_ans_text, 1, 0, 1, 1)
