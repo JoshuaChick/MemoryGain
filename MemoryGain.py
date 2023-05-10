@@ -819,6 +819,8 @@ class MainWindow(QMainWindow):
         self.study_again_btn = QtWidgets.QPushButton()
         self.study_again_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.study_again_btn.setText('Again')
+        self.study_correct_btn.setObjectName('study_again_btn')
+        self.study_correct_btn.setStyleSheet('''#study_again_btn{color: white;}''')
         self.study_again_btn.clicked.connect(self.study_again_btn_clicked)
         self.study_lower_btns_frame_grid_layout.addWidget(self.study_again_btn, 0, 3, 1, 1)
 
