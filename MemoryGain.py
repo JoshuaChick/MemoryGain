@@ -58,6 +58,7 @@ class MainWindow(QMainWindow):
                                 padding: 5px;
                                 width: 150px;
                                 height: 50px;
+                                background-color: rgba(255, 255, 255, 0.1)
                             }
                             QLineEdit{
                                 height: 60px;
@@ -70,6 +71,11 @@ class MainWindow(QMainWindow):
 
         self.central_widget = QtWidgets.QWidget(self)
         self.central_widget.setObjectName("central_widget")
+        self.central_widget.setStyleSheet('''
+                                        #central_widget{
+                                            background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(99, 148, 136, 255), stop:1 rgba(73, 122, 114, 255));
+                                        }
+        ''')
 
         self.root_grid_layout = QtWidgets.QGridLayout(self.central_widget)
         self.root_grid_layout.setObjectName("root_grid_layout")
@@ -77,11 +83,6 @@ class MainWindow(QMainWindow):
 
         self.title_frame = QtWidgets.QFrame()
         self.title_frame.setObjectName('title_frame')
-        self.title_frame.setStyleSheet('''
-                                        #title_frame{
-                                            background-color: #004D40;
-                                        }
-        ''')
         self.title_frame.setMinimumHeight(30)
         self.root_grid_layout.addWidget(self.title_frame, 0, 0, 1, 3)
 
