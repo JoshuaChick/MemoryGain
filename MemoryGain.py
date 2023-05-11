@@ -661,12 +661,24 @@ class MainWindow(QMainWindow):
             self.search_lower_frame_grid_layout.addItem(search_lower_frame_center_spacer, 0, 1, 1, 1)
 
             self.search_previous_btn = QtWidgets.QPushButton()
+            self.search_previous_btn.setObjectName('search_previous_btn')
+            self.search_previous_btn.setStyleSheet('''
+                                                            #search_previous_btn{
+                                                                color: white;
+                                                            }
+                        ''')
             self.search_previous_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_previous_btn.setText('<')
             self.search_previous_btn.clicked.connect(self.search_previous_btn_clicked)
             self.search_lower_frame_grid_layout.addWidget(self.search_previous_btn, 0, 2, 1, 1)
 
             self.search_next_btn = QtWidgets.QPushButton()
+            self.search_next_btn.setObjectName('search_next_btn')
+            self.search_next_btn.setStyleSheet('''
+                                                                        #search_next_btn{
+                                                                            color: white;
+                                                                        }
+                                    ''')
             self.search_next_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_next_btn.setText('>')
             self.search_next_btn.clicked.connect(self.search_next_btn_clicked)
@@ -788,15 +800,39 @@ class MainWindow(QMainWindow):
     def adjust_search_nav_btns(self):
         if self.search_up_to == 0:
             self.search_previous_btn.setEnabled(False)
+            self.search_previous_btn.setStyleSheet('''
+                                                    #search_previous_btn{
+                                                        background-color: rgba(255, 255, 255, 0.05);
+                                                        color: #AAAAAA;
+                                                    }
+            ''')
             self.setFocus()
         else:
             self.search_previous_btn.setEnabled(True)
+            self.search_previous_btn.setStyleSheet('''
+                                                #search_previous_btn{
+                                                    background-color: rgba(255, 255, 255, 0.1);
+                                                    color: white;
+                                                }
+            ''')
 
         if (self.search_up_to + 1) == len(self.searched_cards):
             self.search_next_btn.setEnabled(False)
+            self.search_next_btn.setStyleSheet('''
+                                            #search_next_btn{
+                                                background-color: rgba(255, 255, 255, 0.05);
+                                                color: #AAAAAA;
+                                            }
+            ''')
             self.setFocus()
         else:
             self.search_next_btn.setEnabled(True)
+            self.search_next_btn.setStyleSheet('''
+                                                        #search_next_btn{
+                                                            background-color: rgba(255, 255, 255, 0.1);
+                                                            color: white;
+                                                        }
+                        ''')
 
     def menu_study_btn_clicked(self, deck=False):
         self.clear_layout(self.main_frame_grid_layout)
