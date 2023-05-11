@@ -1005,6 +1005,14 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.add_deck_btn, 0, 1, 1, 1)
 
         self.deck_list_widget = QtWidgets.QListWidget()
+        self.deck_list_widget.setObjectName('deck_list_widget')
+        self.deck_list_widget.setStyleSheet('''
+                                            #deck_list_widget{
+                                                background-color: rgba(255, 255, 255, 0.1);
+                                                border: none;
+                                                color: white;
+                                            }
+        ''')
         deck_lines = decks.get_deck_lines()
         for deck in deck_lines:
             self.deck_list_widget.addItem(deck)
