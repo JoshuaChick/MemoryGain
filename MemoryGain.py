@@ -993,6 +993,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.add_deck_line_edit, 0, 0, 1, 1)
 
         self.add_deck_btn = QtWidgets.QPushButton()
+        self.add_deck_btn.setObjectName('add_deck_btn')
+        self.add_deck_btn.setStyleSheet('''
+                                        #add_deck_btn{
+                                            color: white;
+                                        }
+        ''')
         self.add_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.add_deck_btn.setText('Add Deck')
         self.add_deck_btn.clicked.connect(self.add_deck_btn_clicked)
