@@ -564,6 +564,14 @@ class MainWindow(QMainWindow):
             self.clear_layout(self.main_frame_grid_layout)
 
             self.search_line_edit = QtWidgets.QLineEdit()
+            self.search_line_edit.setObjectName('search_line_edit')
+            self.search_line_edit.setStyleSheet('''
+                                            #search_line_edit{
+                                                background-color: rgba(255, 255, 255, 0.1);
+                                                border: none;
+                                                color: white;
+                                            }
+            ''')
             self.search_line_edit.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_line_edit.setText(query)
             self.main_frame_grid_layout.addWidget(self.search_line_edit, 0, 0, 1, 1)
