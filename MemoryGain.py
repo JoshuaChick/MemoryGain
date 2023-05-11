@@ -643,6 +643,7 @@ class MainWindow(QMainWindow):
 
             self.search_lower_frame = QtWidgets.QFrame()
             self.search_lower_frame_grid_layout = QtWidgets.QGridLayout(self.search_lower_frame)
+            self.search_lower_frame_grid_layout.setContentsMargins(0, 0, 0, 0)
 
             self.search_del_btn = QtWidgets.QPushButton()
             self.search_del_btn.setObjectName('search_del_btn')
