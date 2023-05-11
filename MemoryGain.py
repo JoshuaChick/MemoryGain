@@ -1032,6 +1032,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.del_deck_btn, 1, 1, 1, 1)
 
         self.rename_deck_btn = QtWidgets.QPushButton()
+        self.rename_deck_btn.setObjectName('rename_deck_btn')
+        self.rename_deck_btn.setStyleSheet('''
+                                                #rename_deck_btn{
+                                                    color: white;
+                                                }
+                ''')
         self.rename_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.rename_deck_btn.setText('Rename')
         self.rename_deck_btn.clicked.connect(self.rename_deck_btn_clicked)
