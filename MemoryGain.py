@@ -627,6 +627,14 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.search_qst_text, 2, 0, 1, 2)
 
             self.search_ans_text = QtWidgets.QTextEdit()
+            self.search_ans_text.setObjectName('search_ans_text')
+            self.search_ans_text.setStyleSheet('''
+                                                            #search_ans_text{
+                                                                background-color: rgba(255, 255, 255, 0.1);
+                                                                border: none;
+                                                                color: white;
+                                                            }
+                        ''')
             self.search_ans_text.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_ans_text.setPlainText(self.searched_cards[self.search_up_to]['Answer'])
             self.search_ans_text.setTabChangesFocus(True)
