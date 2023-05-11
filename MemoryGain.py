@@ -577,6 +577,12 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.search_line_edit, 0, 0, 1, 1)
 
             self.search_btn = QtWidgets.QPushButton()
+            self.search_btn.setObjectName('search_btn')
+            self.search_btn.setStyleSheet('''
+                                                #search_btn{
+                                                    color: white;
+                                                }
+                    ''')
             self.search_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_btn.setText('Search')
             self.search_btn.clicked.connect(lambda: self.search_btn_clicked(self.search_line_edit.text()))
