@@ -1020,6 +1020,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.deck_list_widget, 1, 0, 3, 1)
 
         self.del_deck_btn = QtWidgets.QPushButton()
+        self.del_deck_btn.setObjectName('del_deck_btn')
+        self.del_deck_btn.setStyleSheet('''
+                                        #del_deck_btn{
+                                            color: white;
+                                        }
+        ''')
         self.del_deck_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.del_deck_btn.setText('Delete')
         self.del_deck_btn.clicked.connect(self.del_deck_btn_clicked)
