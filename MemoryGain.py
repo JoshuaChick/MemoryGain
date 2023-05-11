@@ -495,12 +495,24 @@ class MainWindow(QMainWindow):
         self.clear_layout(self.main_frame_grid_layout)
 
         self.stats_total_cards_label = QtWidgets.QLabel()
+        self.stats_total_cards_label.setObjectName('stats_total_cards_label')
+        self.stats_total_cards_label.setStyleSheet('''
+                                                    #stats_total_cards_label{
+                                                        color: white;
+                                                    }
+        ''')
         self.stats_total_cards_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.stats_total_cards_label.setText(f'Total number of cards: {len(cards.search_for_cards(""))}')
         self.stats_total_cards_label.setMinimumHeight(60)
         self.main_frame_grid_layout.addWidget(self.stats_total_cards_label, 0, 0, 1, 1)
 
         self.stats_retention_label = QtWidgets.QLabel()
+        self.stats_retention_label.setObjectName('stats_retention_label')
+        self.stats_retention_label.setStyleSheet('''
+                                                            #stats_retention_label{
+                                                                color: white;
+                                                            }
+                ''')
         self.stats_retention_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         if type(stats.get_retention_1440()) == float:
             self.stats_retention_label.setText(f'Retention rate: {round(stats.get_retention_1440())}%')
@@ -510,6 +522,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.stats_retention_label, 1, 0, 1, 1)
 
         self.stats_retention_30_label = QtWidgets.QLabel()
+        self.stats_retention_30_label.setObjectName('stats_retention_30_label')
+        self.stats_retention_30_label.setStyleSheet('''
+                                                                    #stats_retention_30_label{
+                                                                        color: white;
+                                                                    }
+                        ''')
         self.stats_retention_30_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         if type(stats.get_retention_1440()) == float:
             self.stats_retention_30_label.setText(f'Retention rate (previous 30 days): {round(stats.get_retention_1440(30))}%')
@@ -666,7 +684,7 @@ class MainWindow(QMainWindow):
                                                             #search_previous_btn{
                                                                 color: white;
                                                             }
-                        ''')
+            ''')
             self.search_previous_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_previous_btn.setText('<')
             self.search_previous_btn.clicked.connect(self.search_previous_btn_clicked)
@@ -675,10 +693,10 @@ class MainWindow(QMainWindow):
             self.search_next_btn = QtWidgets.QPushButton()
             self.search_next_btn.setObjectName('search_next_btn')
             self.search_next_btn.setStyleSheet('''
-                                                                        #search_next_btn{
-                                                                            color: white;
-                                                                        }
-                                    ''')
+                                                #search_next_btn{
+                                                    color: white;
+                                                }
+            ''')
             self.search_next_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_next_btn.setText('>')
             self.search_next_btn.clicked.connect(self.search_next_btn_clicked)
