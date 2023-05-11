@@ -980,6 +980,14 @@ class MainWindow(QMainWindow):
         self.clear_layout(self.main_frame_grid_layout)
 
         self.add_deck_line_edit = QtWidgets.QLineEdit()
+        self.add_deck_line_edit.setObjectName('add_deck_line_edit')
+        self.add_deck_line_edit.setStyleSheet('''
+                                                #add_deck_line_edit{
+                                                    background-color: rgba(255, 255, 255, 0.1);
+                                                    border: none;
+                                                    color: white;
+                                                }
+        ''')
         # Line edit needs font to be 3 bigger to match other items.
         self.add_deck_line_edit.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 3))
         self.main_frame_grid_layout.addWidget(self.add_deck_line_edit, 0, 0, 1, 1)
