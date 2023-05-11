@@ -645,6 +645,12 @@ class MainWindow(QMainWindow):
             self.search_lower_frame_grid_layout = QtWidgets.QGridLayout(self.search_lower_frame)
 
             self.search_del_btn = QtWidgets.QPushButton()
+            self.search_del_btn.setObjectName('search_del_btn')
+            self.search_del_btn.setStyleSheet('''
+                                                #search_del_btn{
+                                                    color: white;
+                                                }
+            ''')
             self.search_del_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_del_btn.setText('Delete')
             self.search_del_btn.clicked.connect(self.search_del_btn_clicked)
