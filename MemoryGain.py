@@ -63,6 +63,9 @@ class MainWindow(QMainWindow):
                             QLineEdit{
                                 height: 60px;
                             }
+                            QScrollBar{
+                                background-color: rgba(255, 255, 255, 0.1);
+                            }
                             QSpinBox{
                                 height: 60px;
                             }
