@@ -589,6 +589,18 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.search_btn, 0, 1, 1, 1)
 
             self.search_deck_selector = QtWidgets.QComboBox()
+            self.search_deck_selector.setObjectName('search_deck_selector')
+            self.search_deck_selector.setStyleSheet('''
+                                                    #search_deck_selector{
+                                                        background-color: rgba(255, 255, 255, 0.1);
+                                                        border: none;
+                                                        color: white;
+                                                    }
+                                                    QAbstractItemView{
+                                                        background-color: #447777;
+                                                        color: white; 
+                                                    }  
+            ''')
             # The drop down list on ComboBoxes is unusually small so 4 point is added.
             self.search_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
             self.search_deck_selector.setMinimumHeight(60)
