@@ -81,18 +81,18 @@ class MainWindow(QMainWindow):
         self.root_grid_layout.setObjectName("root_grid_layout")
         self.root_grid_layout.setContentsMargins(0, 0, 0, 0)
 
-        self.title_frame = QtWidgets.QFrame()
-        self.title_frame.setObjectName('title_frame')
-        self.title_frame.setStyleSheet('''#title_frame{background-color: #447777}''')
-        self.title_frame.setMinimumHeight(30)
-        self.root_grid_layout.addWidget(self.title_frame, 0, 0, 1, 3)
+        self.dragable_title_frame = QtWidgets.QFrame()
+        self.dragable_title_frame.setObjectName('dragable_title_frame')
+        self.dragable_title_frame.setStyleSheet('''#dragable_title_frame{background-color: #447777}''')
+        self.dragable_title_frame.setMinimumHeight(30)
+        self.root_grid_layout.addWidget(self.dragable_title_frame, 0, 0, 1, 4)
 
         # Makes it so user can drag by title frame.
         self.mousePressEvent = self.mouse_press_event
-        self.title_frame.mouseMoveEvent = self.move_window
+        self.dragable_title_frame.mouseMoveEvent = self.move_window
 
-        self.title_horizontal_layout = QtWidgets.QHBoxLayout(self.title_frame)
-        self.title_horizontal_layout.setContentsMargins(0, 0, 0, 0)
+        self.dragable_title_horizontal_layout = QtWidgets.QHBoxLayout(self.dragable_title_frame)
+        self.dragable_title_horizontal_layout.setContentsMargins(0, 0, 0, 0)
 
         self.title_app_name_label = QtWidgets.QLabel()
         self.title_app_name_label.setObjectName('title_app_name_label')
@@ -103,10 +103,21 @@ class MainWindow(QMainWindow):
         ''')
         self.title_app_name_label.setText('   MemoryGain')
         self.title_app_name_label.setFont(QFont('MS Shell Dlg 2', 10))
-        self.title_horizontal_layout.addWidget(self.title_app_name_label)
+        self.dragable_title_horizontal_layout.addWidget(self.title_app_name_label)
 
-        title_horizontal_spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.title_horizontal_layout.addItem(title_horizontal_spacer)
+        dragable_title_horizontal_spacer = QtWidgets.QSpacerItem(0, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.dragable_title_horizontal_layout.addItem(dragable_title_horizontal_spacer)
+
+        self.non_dragable_title_frame = QtWidgets.QFrame()
+        # 3 70px buttons = 210px.
+        self.non_dragable_title_frame.setMaximumSize(210, 40)
+        self.non_dragable_title_frame.setObjectName('non_dragable_title_frame')
+        self.non_dragable_title_frame.setStyleSheet('''#non_dragable_title_frame{background-color: #447777}''')
+        self.non_dragable_title_frame.setMinimumHeight(30)
+        self.root_grid_layout.addWidget(self.non_dragable_title_frame, 0, 3, 1, 1)
+
+        self.non_dragable_title_horizontal_layout = QtWidgets.QHBoxLayout(self.non_dragable_title_frame)
+        self.non_dragable_title_horizontal_layout.setContentsMargins(0, 0, 0, 0)
 
         self.title_minimize_btn = QtWidgets.QPushButton()
         self.title_minimize_btn.setMaximumSize(70, 40)
@@ -123,7 +134,7 @@ class MainWindow(QMainWindow):
                                 background-color: rgba(255, 255, 255, 0.1);
                             }
         ''')
-        self.title_horizontal_layout.addWidget(self.title_minimize_btn)
+        self.non_dragable_title_horizontal_layout.addWidget(self.title_minimize_btn)
 
         self.title_maximize_btn = QtWidgets.QPushButton()
         self.title_maximize_btn.setMaximumSize(70, 40)
@@ -140,7 +151,7 @@ class MainWindow(QMainWindow):
                                        background-color: rgba(255, 255, 255, 0.1);
                                     }
                 ''')
-        self.title_horizontal_layout.addWidget(self.title_maximize_btn)
+        self.non_dragable_title_horizontal_layout.addWidget(self.title_maximize_btn)
 
         self.title_close_btn = QtWidgets.QPushButton()
         self.title_close_btn.setMaximumSize(70, 40)
@@ -157,7 +168,7 @@ class MainWindow(QMainWindow):
                                                 background-color: rgba(255, 255, 255, 0.1);
                                             }
                         ''')
-        self.title_horizontal_layout.addWidget(self.title_close_btn)
+        self.non_dragable_title_horizontal_layout.addWidget(self.title_close_btn)
 
         self.main_frame = QtWidgets.QFrame()
         self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -167,7 +178,7 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout = QtWidgets.QGridLayout(self.main_frame)
         self.main_frame_grid_layout.setObjectName("main_frame_grid_layout")
 
-        self.root_grid_layout.addWidget(self.main_frame, 1, 2, 1, 1)
+        self.root_grid_layout.addWidget(self.main_frame, 1, 2, 1, 2)
 
         self.menu_frame = QtWidgets.QFrame(self.central_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -250,7 +261,7 @@ class MainWindow(QMainWindow):
         QtWidgets.QSizeGrip(self.resize_window_frame)
         self.resizer_horizontal_layout.addWidget(self.resize_window_frame)
 
-        self.root_grid_layout.addLayout(self.resizer_horizontal_layout, 2, 0, 1, 3)
+        self.root_grid_layout.addLayout(self.resizer_horizontal_layout, 2, 0, 1, 4)
 
         self.setCentralWidget(self.central_widget)
 
