@@ -65,6 +65,7 @@ class MainWindow(QMainWindow):
                             }
                             QScrollBar{
                                 background-color: rgba(255, 255, 255, 0.1);
+                                width: 8px;
                             }
                             QSpinBox{
                                 height: 60px;
