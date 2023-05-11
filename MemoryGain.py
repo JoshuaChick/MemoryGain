@@ -316,6 +316,12 @@ class MainWindow(QMainWindow):
         self.clear_layout(self.main_frame_grid_layout)
 
         self.font_size_label = QtWidgets.QLabel()
+        self.font_size_label.setObjectName('font_size_label')
+        self.font_size_label.setStyleSheet('''
+                                            #font_size_label{
+                                                color: white;
+                                            }
+        ''')
         # Minimum width will apply to everything else in column.
         self.font_size_label.setMinimumWidth(260)
         self.font_size_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
