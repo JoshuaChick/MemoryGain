@@ -468,8 +468,7 @@ class MainWindow(QMainWindow):
         if confirm_restore_backup_msg.clickedButton().text() == 'OK':
             backups.restore_backup(self.backup_list_widget.currentItem().text())
 
-            self.clear_layout(self.root_grid_layout)
-            self.setup_ui(check_for_update=False, maximize=False)
+            self.menu_study_btn.setText(f'Study {cards.get_num_to_study()}')
             self.menu_settings_btn_clicked()
 
     def del_backup_btn_clicked(self):
