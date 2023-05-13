@@ -332,6 +332,14 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addItem(font_label_selector_spacer, 0, 1, 1, 1)
 
         self.font_size_selector = QtWidgets.QSpinBox()
+        self.font_size_selector.setObjectName('font_size_selector')
+        self.font_size_selector.setStyleSheet('''
+                                                #font_size_selector{
+                                                    background-color: #447777;
+                                                    border: none;
+                                                    color: white;
+                                                }
+        ''')
         self.font_size_selector.setMinimum(8)
         self.font_size_selector.setMaximum(14)
         font_size_selector_line_edit = self.font_size_selector.lineEdit()
@@ -339,7 +347,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.font_size_selector.setValue(settings.get_font_size())
-        self.font_size_selector.textChanged.connect(self.settings_save)
+        self.font_size_selector.textChanged.connect(self.font_size_changed)
         self.main_frame_grid_layout.addWidget(self.font_size_selector, 0, 2, 1, 1)
 
         horizontal_line_1 = QtWidgets.QFrame(self.central_widget)
@@ -360,7 +368,7 @@ class MainWindow(QMainWindow):
         # QSpinBox font is smaller than regular, so 2 point is added to font.
         self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
         self.target_retention_rate_selector.setValue(settings.get_target_retention_rate())
-        self.target_retention_rate_selector.textChanged.connect(self.settings_save)
+        self.target_retention_rate_selector.textChanged.connect(self.target_retention_changed)
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_selector, 2, 2, 1, 1)
 
         horizontal_line_2 = QtWidgets.QFrame(self.central_widget)
@@ -489,13 +497,28 @@ class MainWindow(QMainWindow):
 
         self.menu_settings_btn_clicked()
 
-    def settings_save(self):
-        settings.set_font_size(self.font_size_selector.value())
+    def target_retention_changed(self):
         settings.set_target_retention_rate(self.target_retention_rate_selector.value())
 
-        self.clear_layout(self.root_grid_layout)
-        self.setup_ui(check_for_update=False, maximize=False)
-        self.menu_settings_btn_clicked()
+    def font_size_changed(self):
+        settings.set_font_size(self.font_size_selector.value())
+
+        self.menu_study_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.menu_add_cards_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.menu_decks_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.menu_search_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.menu_stats_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.menu_settings_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+
+        self.font_size_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.target_retention_rate_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.create_backup_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.create_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.backup_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.del_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+        self.restore_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
 
     def menu_stats_btn_clicked(self):
         self.clear_layout(self.main_frame_grid_layout)
