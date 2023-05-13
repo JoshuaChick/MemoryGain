@@ -35,18 +35,17 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setup_ui()
 
-    def setup_ui(self, check_for_update=True, maximize=True):
-        if check_for_update:
-            if update.update_available():
-                update_msg = QMessageBox()
-                update_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-                update_msg.setWindowTitle("Update")
-                update_msg.setText("An updated version of MemoryGain is available, would you like to update?")
-                update_msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-                update_msg.setIcon(QMessageBox.Information)
-                update_msg.exec_()
-                if update_msg.clickedButton().text() == "&Yes":
-                    update.go_to_memorygain_site()
+    def setup_ui(self):
+        if update.update_available():
+            update_msg = QMessageBox()
+            update_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            update_msg.setWindowTitle("Update")
+            update_msg.setText("An updated version of MemoryGain is available, would you like to update?")
+            update_msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            update_msg.setIcon(QMessageBox.Information)
+            update_msg.exec_()
+            if update_msg.clickedButton().text() == "&Yes":
+                update.go_to_memorygain_site()
 
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setWindowTitle("MemoryGain")
@@ -273,8 +272,7 @@ class MainWindow(QMainWindow):
 
         self.menu_study_btn_clicked()
 
-        if maximize:
-            self.show_maximized()
+        self.show_maximized()
 
     def show_maximized(self):
         self.showMaximized()
