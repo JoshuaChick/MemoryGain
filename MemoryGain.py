@@ -360,6 +360,14 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_label, 2, 0, 1, 1)
 
         self.target_retention_rate_selector = QtWidgets.QSpinBox()
+        self.target_retention_rate_selector.setObjectName('target_retention_rate_selector')
+        self.target_retention_rate_selector.setStyleSheet('''
+                                                        #target_retention_rate_selector{
+                                                            background-color: #447777;
+                                                            border: none;
+                                                            color: white;
+                                                        }
+                ''')
         self.target_retention_rate_selector.setMinimum(50)
         self.target_retention_rate_selector.setMaximum(99)
         target_retention_rate_selector_line_edit = self.target_retention_rate_selector.lineEdit()
