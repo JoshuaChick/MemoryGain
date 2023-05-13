@@ -644,10 +644,16 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addItem(search_lower_right_spacer, 1, 1, 1, 1)
 
     def search_btn_clicked(self, query):
-        self.search_up_to = 0
-        self.searched_cards = cards.search_for_cards(query)
+        if len(cards.search_for_cards(query)) == 0:
+            query_not_found_msg = QMessageBox()
+            query_not_found_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            query_not_found_msg.setWindowTitle('Query not found')
+            query_not_found_msg.setText('There were no cards that contained that query.')
+            query_not_found_msg.exec_()
+        else:
+            self.search_up_to = 0
+            self.searched_cards = cards.search_for_cards(query)
 
-        if len(self.searched_cards) != 0:
             self.clear_layout(self.main_frame_grid_layout)
 
             self.search_line_edit = QtWidgets.QLineEdit()
@@ -776,12 +782,6 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.search_lower_frame, 4, 0, 1, 2)
 
             self.search_next_btn.setFocus()
-        else:
-            query_not_found_msg = QMessageBox()
-            query_not_found_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
-            query_not_found_msg.setWindowTitle('Query not found')
-            query_not_found_msg.setText('There were no cards that contained that query.')
-            query_not_found_msg.exec_()
 
     def search_save(self):
         search_qst = self.search_qst_text.toPlainText().strip()
@@ -1123,6 +1123,12 @@ class MainWindow(QMainWindow):
             self.add_cards_lower_frame_grid_layout.addItem(add_cards_lower_frame_right_spacer, 0, 2, 1, 1)
         else:
             self.make_deck_label = QtWidgets.QLabel()
+            self.make_deck_label.setObjectName('make_deck_label')
+            self.make_deck_label.setStyleSheet('''
+                                                #make_deck_label{
+                                                    color: white;
+                                                }
+            ''')
             self.make_deck_label.setText('Please make a deck to put cards into.')
             self.make_deck_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.make_deck_label.setMinimumHeight(60)
