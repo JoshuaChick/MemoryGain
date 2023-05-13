@@ -427,6 +427,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.backup_list_widget, 5, 0, 2, 2)
 
         self.del_backup_btn = QtWidgets.QPushButton()
+        self.del_backup_btn.setObjectName('del_backup_btn')
+        self.del_backup_btn.setStyleSheet('''
+                                                #del_backup_btn{
+                                                    color: white;
+                                                }
+                ''')
         self.del_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.del_backup_btn.setText('Delete')
         self.del_backup_btn.clicked.connect(self.del_backup_btn_clicked)
