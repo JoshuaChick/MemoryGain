@@ -439,6 +439,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.del_backup_btn, 5, 2, 1, 1)
 
         self.restore_backup_btn = QtWidgets.QPushButton()
+        self.restore_backup_btn.setObjectName('restore_backup_btn')
+        self.restore_backup_btn.setStyleSheet('''
+                                                        #restore_backup_btn{
+                                                            color: white;
+                                                        }
+                        ''')
         self.restore_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.restore_backup_btn.setText('Restore')
         self.restore_backup_btn.clicked.connect(self.restore_backup_btn_clicked)
