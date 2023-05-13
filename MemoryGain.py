@@ -412,6 +412,14 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.create_backup_btn, 4, 2, 1, 1)
 
         self.backup_list_widget = QtWidgets.QListWidget()
+        self.backup_list_widget.setObjectName('backup_list_widget')
+        self.backup_list_widget.setStyleSheet('''
+                                                    #backup_list_widget{
+                                                        background-color: rgba(255, 255, 255, 0.1);
+                                                        border: none;
+                                                        color: white;
+                                                    }
+                ''')
         self.backup_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         backup_names = backups.get_backup_names()
         for name in backup_names:
