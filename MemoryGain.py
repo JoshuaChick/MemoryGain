@@ -389,6 +389,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(horizontal_line_2, 3, 0, 1, 3)
 
         self.create_backup_label = QtWidgets.QLabel()
+        self.create_backup_label.setObjectName('create_backup_label')
+        self.create_backup_label.setStyleSheet('''
+                                                                #create_backup_label{
+                                                                    color: white;
+                                                                }
+                ''')
         self.create_backup_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.create_backup_label.setText('Create backup:')
         self.main_frame_grid_layout.addWidget(self.create_backup_label, 4, 0, 1, 1)
