@@ -344,8 +344,7 @@ class MainWindow(QMainWindow):
         self.font_size_selector.setMaximum(14)
         font_size_selector_line_edit = self.font_size_selector.lineEdit()
         font_size_selector_line_edit.setReadOnly(True)
-        # QSpinBox font is smaller than regular, so 2 point is added to font.
-        self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
+        self.font_size_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.font_size_selector.setValue(settings.get_font_size())
         self.font_size_selector.textChanged.connect(self.font_size_changed)
         self.main_frame_grid_layout.addWidget(self.font_size_selector, 0, 2, 1, 1)
@@ -365,8 +364,7 @@ class MainWindow(QMainWindow):
         self.target_retention_rate_selector.setMaximum(99)
         target_retention_rate_selector_line_edit = self.target_retention_rate_selector.lineEdit()
         target_retention_rate_selector_line_edit.setReadOnly(True)
-        # QSpinBox font is smaller than regular, so 2 point is added to font.
-        self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
+        self.target_retention_rate_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.target_retention_rate_selector.setValue(settings.get_target_retention_rate())
         self.target_retention_rate_selector.textChanged.connect(self.target_retention_changed)
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_selector, 2, 2, 1, 1)
@@ -388,7 +386,7 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.create_backup_btn, 4, 2, 1, 1)
 
         self.backup_list_widget = QtWidgets.QListWidget()
-        self.backup_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
+        self.backup_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         backup_names = backups.get_backup_names()
         for name in backup_names:
             self.backup_list_widget.addItem(name)
@@ -581,8 +579,7 @@ class MainWindow(QMainWindow):
                                                 color: white;
                                             }
         ''')
-        # Line edit needs font to be 3 bigger to match other items.
-        self.search_line_edit.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 3))
+        self.search_line_edit.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.main_frame_grid_layout.addWidget(self.search_line_edit, 0, 0, 1, 1)
 
         self.search_btn = QtWidgets.QPushButton()
@@ -648,8 +645,7 @@ class MainWindow(QMainWindow):
                                                         color: white; 
                                                     }  
             ''')
-            # The drop down list on ComboBoxes is unusually small so 4 point is added.
-            self.search_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
+            self.search_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.search_deck_selector.setMinimumHeight(60)
             deck_names = decks.get_deck_lines()
             for deck in deck_names:
@@ -1009,8 +1005,7 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.add_cards_upper_frame, 0, 0, 1, 1)
 
             self.add_cards_deck_selector = QtWidgets.QComboBox()
-            # The drop down list on ComboBoxes is unusually small so 4 point is added.
-            self.add_cards_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 4))
+            self.add_cards_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.add_cards_deck_selector.setMinimumHeight(60)
             self.add_cards_deck_selector.setObjectName('add_cards_deck_selector')
             self.add_cards_deck_selector.setStyleSheet('''
@@ -1132,8 +1127,7 @@ class MainWindow(QMainWindow):
                                                     color: white;
                                                 }
         ''')
-        # Line edit needs font to be 3 bigger to match other items.
-        self.add_deck_line_edit.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 3))
+        self.add_deck_line_edit.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.main_frame_grid_layout.addWidget(self.add_deck_line_edit, 0, 0, 1, 1)
 
         self.add_deck_btn = QtWidgets.QPushButton()
@@ -1160,7 +1154,7 @@ class MainWindow(QMainWindow):
         deck_lines = decks.get_deck_lines()
         for deck in deck_lines:
             self.deck_list_widget.addItem(deck)
-        self.deck_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size() + 2))
+        self.deck_list_widget.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.main_frame_grid_layout.addWidget(self.deck_list_widget, 1, 0, 3, 1)
 
         self.del_deck_btn = QtWidgets.QPushButton()
