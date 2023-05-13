@@ -400,6 +400,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(self.create_backup_label, 4, 0, 1, 1)
 
         self.create_backup_btn = QtWidgets.QPushButton()
+        self.create_backup_btn.setObjectName('create_backup_btn')
+        self.create_backup_btn.setStyleSheet('''
+                                        #create_backup_btn{
+                                            color: white;
+                                        }
+        ''')
         self.create_backup_btn.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.create_backup_btn.setText('Backup')
         self.create_backup_btn.clicked.connect(self.create_backup_btn_clicked)
