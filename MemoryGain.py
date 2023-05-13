@@ -355,6 +355,12 @@ class MainWindow(QMainWindow):
         self.main_frame_grid_layout.addWidget(horizontal_line_1, 1, 0, 1, 3)
 
         self.target_retention_rate_label = QtWidgets.QLabel()
+        self.target_retention_rate_label.setObjectName('target_retention_rate_label')
+        self.target_retention_rate_label.setStyleSheet('''
+                                                        #target_retention_rate_label{
+                                                            color: white;
+                                                        }
+        ''')
         self.target_retention_rate_label.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
         self.target_retention_rate_label.setText('Retention rate %:')
         self.main_frame_grid_layout.addWidget(self.target_retention_rate_label, 2, 0, 1, 1)
