@@ -679,6 +679,7 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.search_btn, 0, 1, 1, 1)
 
             self.search_deck_selector = QtWidgets.QComboBox()
+            self.search_deck_selector.wheelEvent = self.empty_event
             self.search_deck_selector.setObjectName('search_deck_selector')
             self.search_deck_selector.setStyleSheet('''
                                                     #search_deck_selector{
@@ -923,6 +924,9 @@ class MainWindow(QMainWindow):
                                                         }
                         ''')
 
+    def empty_event(self, e):
+        return None
+
     def menu_study_btn_clicked(self, deck=False):
         self.clear_layout(self.main_frame_grid_layout)
 
@@ -1051,6 +1055,7 @@ class MainWindow(QMainWindow):
             self.main_frame_grid_layout.addWidget(self.add_cards_upper_frame, 0, 0, 1, 1)
 
             self.add_cards_deck_selector = QtWidgets.QComboBox()
+            self.add_cards_deck_selector.wheelEvent = self.empty_event
             self.add_cards_deck_selector.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
             self.add_cards_deck_selector.setMinimumHeight(60)
             self.add_cards_deck_selector.setObjectName('add_cards_deck_selector')
