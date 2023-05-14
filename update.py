@@ -1,5 +1,6 @@
 import urllib.request
 import os
+import sys
 
 
 def update_available():
