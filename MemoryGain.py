@@ -1338,15 +1338,18 @@ class MainWindow(QMainWindow):
                     self.clear_layout(item.layout())
 
 
-# If MemoryGain.exe running True, else False.
+# Every time the app launches two instances of 'C:\\Program Files\\MemoryGain\\MemoryGain.exe' are created. So,
+# if more than two instances of 'C:\\Program Files\\MemoryGain\\MemoryGain.exe' are found the current launch will stop.
 def app_already_running():
-    command_output = ''
+    instances_of_app = 0
+
     pipe = Popen('powershell -c "get-process | select-object path"', stdout=PIPE, stderr=PIPE)
     for line in pipe.stdout.readlines():
-        command_output += line.decode()
+        if 'C:\\Program Files\\MemoryGain\\MemoryGain.exe' in line.decode():
+            instances_of_app += 1
 
-    if 'C:\\Program Files\\MemoryGain\\MemoryGain.exe' in command_output:
-        return True
+        if instances_of_app > 2:
+            return True
 
     return False
 
