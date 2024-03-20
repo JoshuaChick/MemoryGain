@@ -3,6 +3,8 @@ MemoryGain is a flashcards app that aims to apply various algorithms to aid huma
 
 # TO RUN
 
+(Currently only works on Windows)
+
 ```
 git clone https://github.com/JoshuaChick/MemoryGain
 ```
