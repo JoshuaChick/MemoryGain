@@ -9,7 +9,7 @@ MemoryGain is a flashcards app that aims to apply various algorithms to aid huma
 git clone https://github.com/JoshuaChick/MemoryGain
 ```
 ```
-cd MemoryGain
+cd MemoryGain/app
 ```
 ```
 python MemoryGain.py
