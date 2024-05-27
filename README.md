@@ -2,7 +2,7 @@
 MemoryGain is a flashcards app that aims to apply various algorithms to aid human learning, with a focus on machine learning.
 
 # TO INSTALL
-Go to https://joshuachick.github.io/MemoryGain/ and click download.
+Go to https://joshuachick.github.io/MemoryGain/ and click download. After going through the installation process you will have a desktop and start menu shortcut you can use to launch the app.
 
 # TO RUN
 
