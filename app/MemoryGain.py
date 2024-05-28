@@ -1361,6 +1361,15 @@ class MainWindow(QMainWindow):
                 no_name_msg.exec_()
                 continue
 
+            if not check_valid_chars(new_deck_name) and ok:
+                invalid_char_msg = QMessageBox()
+                invalid_char_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+                invalid_char_msg.setWindowTitle('Invalid Character')
+                invalid_char_msg.setText('One of your characters was invalid. Due to the way this app writes'
+                                         ' to files you should only use characters found on a regular full-size keyboard')
+                invalid_char_msg.exec_()
+                continue
+
             if ok:
                 not_duplicate = decks.rename_deck(selected_deck_rename, new_deck_name)
                 if not not_duplicate:
