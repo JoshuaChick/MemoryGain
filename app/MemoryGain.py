@@ -809,6 +809,15 @@ class MainWindow(QMainWindow):
         search_qst = self.search_qst_text.toPlainText().strip()
         search_ans = self.search_ans_text.toPlainText().strip()
 
+        if (not check_valid_chars(search_qst)) or (not check_valid_chars(search_ans)):
+            invalid_char_msg = QMessageBox()
+            invalid_char_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            invalid_char_msg.setWindowTitle('Invalid Character')
+            invalid_char_msg.setText('One of your characters was invalid. Due to the way this app writes'
+                                     ' to files you should only use characters found on a regular full-size keyboard')
+            invalid_char_msg.exec_()
+            return
+
         if search_qst == '':
             enter_qst_msg = QMessageBox()
             enter_qst_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
