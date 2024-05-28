@@ -1262,6 +1262,16 @@ class MainWindow(QMainWindow):
 
     def add_deck_btn_clicked(self):
         deck_name = self.add_deck_line_edit.text().strip()
+
+        if not check_valid_chars(deck_name):
+            invalid_char_msg = QMessageBox()
+            invalid_char_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            invalid_char_msg.setWindowTitle('Invalid Character')
+            invalid_char_msg.setText('One of your characters was invalid. Due to the way this app writes'
+                                     ' to files you should only use characters found on a regular full-size keyboard')
+            invalid_char_msg.exec_()
+            return
+
         if deck_name == '':
             empty_deck_line_msg = QMessageBox()
             empty_deck_line_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
