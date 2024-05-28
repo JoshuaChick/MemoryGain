@@ -30,6 +30,18 @@ import backups
 import update
 
 
+# Due to the way python encode characters all user-entered text, that is going to be written to file, needs to comprise
+# only of these chars
+def check_valid_chars(string_obj):
+    # all the characters you can find on a regular full size keyboard (english language)
+    valid_chars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()`~_-+={[}]|\\:;"\'<,>.?/'
+
+    for char in string_obj:
+        if char not in valid_chars:
+            return False
+
+    return True
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -1140,6 +1152,16 @@ class MainWindow(QMainWindow):
     def add_card_btn_clicked(self):
         add_qst = self.add_cards_qst_text.toPlainText().strip()
         add_ans = self.add_cards_ans_text.toPlainText().strip()
+
+        if (not check_valid_chars(add_qst)) or (not check_valid_chars(add_ans)):
+            invalid_char_msg = QMessageBox()
+            invalid_char_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+            invalid_char_msg.setWindowTitle('Invalid Character')
+            invalid_char_msg.setText('One of your characters was invalid. Due to the way this app writes'
+                                     ' to files you should only use characters found on a regular full-size keyboard')
+            invalid_char_msg.exec_()
+            return
+
 
         if self.add_cards_deck_selector.currentIndex() == -1:
             select_deck_msg = QMessageBox()
