@@ -520,8 +520,18 @@ class MainWindow(QMainWindow):
                 no_name_msg.exec_()
                 continue
 
-            # Checks for invalid character.
-            invalid_char = False
+            # checks for invalid characters for when python writes to file
+            if not check_valid_chars(backup_name) and ok:
+                invalid_char_msg = QMessageBox()
+                invalid_char_msg.setFont(QFont('MS Shell Dlg 2', settings.get_font_size()))
+                invalid_char_msg.setWindowTitle('Invalid Character')
+                invalid_char_msg.setText('One of your characters was invalid. Due to the way this app writes'
+                                         ' to files you should only use characters found on a regular full-size keyboard')
+                invalid_char_msg.exec_()
+                continue
+
+            # checks for invalid Windows file system character.
+            invalid_windows_char = False
             for char in ['\\', '/', ':', '*', '?', '"', '<', '>', '|']:
                 if char in backup_name and ok:
                     no_name_msg = QMessageBox()
@@ -529,10 +539,10 @@ class MainWindow(QMainWindow):
                     no_name_msg.setWindowTitle('Invalid Character')
                     no_name_msg.setText('Due to the way Windows stores folders your backup name cannot contain: \ / : * ? " < > |')
                     no_name_msg.exec_()
-                    invalid_char = True
+                    invalid_windows_char = True
                     break
 
-            if invalid_char:
+            if invalid_windows_char:
                 continue
 
             if ok:
