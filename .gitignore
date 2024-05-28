@@ -1,4 +1,5 @@
 ignored/ 
 __pycache__/ 
+.idea/
 CreateShortcuts.vbs 
 MemoryGain.exe 
