@@ -34,7 +34,7 @@ import update
 # only of these chars
 def check_valid_chars(string_obj):
     # all the characters you can find on a regular full size keyboard (english language)
-    valid_chars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()`~_-+={[}]|\\:;"\'<,>.?/'
+    valid_chars = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()`~_-+={[}]|\\:;"\'<,>.?/\n\r'
 
     for char in string_obj:
         if char not in valid_chars:
@@ -816,6 +816,11 @@ class MainWindow(QMainWindow):
             invalid_char_msg.setText('One of your characters was invalid. Due to the way this app writes'
                                      ' to files you should only use characters found on a regular full-size keyboard')
             invalid_char_msg.exec_()
+            # disconnect to avoid trying to resave when deck is reverted (the reason for these reversions is when the user
+            # changes the deck the search_save func is called, so when an error like above pops up the deck needs to be reverted)
+            self.search_deck_selector.disconnect()
+            self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
+            self.search_deck_selector.currentTextChanged.connect(self.search_save)
             return
 
         if search_qst == '':
@@ -824,11 +829,15 @@ class MainWindow(QMainWindow):
             enter_qst_msg.setWindowTitle('Enter Question')
             enter_qst_msg.setText('Please enter a question')
             enter_qst_msg.exec_()
+            # disconnect to avoid trying to resave when deck is reverted
+            self.search_deck_selector.disconnect()
+            self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
+            self.search_deck_selector.currentTextChanged.connect(self.search_save)
             return
 
+        # if the current qst equals original qst then just write to file, else check for duplicate qst
         if search_qst == self.searched_cards[self.search_up_to]['Question']:
             cards.write_card_edit_save(self.searched_cards[self.search_up_to], search_qst, search_ans)
-        # Makes sure an edited question does not already exist.
         else:
             if cards.check_qst_exists(search_qst):
                 duplicate_qst_msg = QMessageBox()
@@ -836,6 +845,10 @@ class MainWindow(QMainWindow):
                 duplicate_qst_msg.setWindowTitle('Duplicate Question')
                 duplicate_qst_msg.setText('That question already exists, please enter a different question.')
                 duplicate_qst_msg.exec_()
+                # disconnect to avoid trying to resave when deck is reverted
+                self.search_deck_selector.disconnect()
+                self.search_deck_selector.setCurrentText(self.searched_cards[self.search_up_to]['Deck'])
+                self.search_deck_selector.currentTextChanged.connect(self.search_save)
                 return
             else:
                 cards.write_card_edit_save(self.searched_cards[self.search_up_to], search_qst, search_ans)
