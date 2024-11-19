@@ -30,7 +30,7 @@ import backups
 import update
 
 
-# Due to the way python encode characters all user-entered text, that is going to be written to file, needs to comprise
+# Due to the way python encodes characters all user-entered text, that is going to be written to file, needs to comprise
 # only of these chars
 def check_valid_chars(string_obj):
     # all the characters you can find on a regular full size keyboard (english language)
